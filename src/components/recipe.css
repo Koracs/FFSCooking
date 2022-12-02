@@ -1,0 +1,10 @@
+.recipe{
+    color: #16465d;
+    background: #c8eafa;
+    font-size: 3em;
+    padding: 5px;
+    margin-top: 10px;
+    white-space: nowrap;
+    border-radius: 10px;
+    box-shadow: 5px 5px #282c34;
+}
