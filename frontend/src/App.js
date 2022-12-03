@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
-import './App.css';
+import React from 'react';
 import './components/styles.css';
 import Header from "./components/header";
 import {Route, Routes } from "react-router-dom"
 import Home from "./pages/home";
 import Recipes from "./pages/recipes";
-import Inventory from "./pages/inventory";
+import Inventory from "./pages/inventory/inventory";
 import ViewRecipe from "./pages/viewRecipe";
 import AddRecipe from "./pages/addRecipe";
 import EditRecipe from "./pages/editRecipe";
