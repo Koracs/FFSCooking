@@ -1,76 +1,128 @@
 import React, {useState, useEffect} from "react";
-import {useParams, useNavigate, Link} from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
+import {useNavigate} from "react-router-dom";
 
 
 export default function ViewInventory() {
-    const [record, setRecord] = useState([]);
-    const params = useParams();
-    const navigate = useNavigate();
-    const [isLoading,setIsLoading] = useState(true);
+    const [ingredients, setIngredients] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [formData, setFormData] = useState({
+        ingredient: "",
+        state: true
+    });
 
-    // This method fetches the records from the database.
+    const {ingredient, state} = formData
+    const navigate = useNavigate();
+
+    const onChange = (e) => {
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }))
+    }
+
+    async function onSubmit(e) {
+        e.preventDefault();
+
+        const newRecipe = {...formData};
+
+        await fetch("http://localhost:5000/api/inventory", { //todo catch response
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newRecipe),
+        }).catch(error => { //todo: error message not showing
+            window.alert(error);
+            return;
+        });
+        //todo: no confirmation showing
+        setFormData({ingredient: "", state: true})
+
+
+        //todo this reloads all ingredients?
+        const newResponse = await fetch(`http://localhost:5000/api/inventory`)
+        const newIngredients = await newResponse.json();
+        setIngredients(newIngredients)
+    }
+
     useEffect(() => {
-        async function getRecords() {
-            const response = await fetch(`http://localhost:5000/api/inventory/638b41271591fccd1692e7bf`)
-            console.log(response)
+        async function getInventory() {
+
+            const response = await fetch(`http://localhost:5000/api/inventory`)
+
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`
                 window.alert(message)
                 return
             }
 
-            const record = await response.json();
-            setRecord(record)
+            const ingredients = await response.json();
+            setIngredients(ingredients)
             setIsLoading(false);
         }
 
-        getRecords()
-
+        getInventory()
         return;
-    }, [params.id, navigate]);
+    }, [ingredients.length]);
 
-    async function changeStatus(inventoryId, ingredientId) {
-        const response = await fetch(`http://localhost:5000/api/inventory/${inventoryId}/ingredient/${ingredientId}`, { method: 'PUT'})
-        console.log(inventoryId)
-        console.log(ingredientId)
+
+    function ingredientList() {
+        return ingredients.map((ingredient) => {
+            return (
+
+                <li key={ingredient._id}>
+                    <button className={"button"} style={{background: ingredient.state ? "#00ff00" : "#ff0000"}}
+                            key={ingredient._id} onClick={() => invertState(ingredient)}>
+                        {ingredient.ingredient} </button>
+                </li>
+            );
+        });
+    }
+
+    return (
+        <div>
+            <h1>My Inventory</h1>
+            <ul className="overview">
+                {ingredientList()}
+            </ul>
+            <h3>Add Ingredient</h3>
+            <form onSubmit={onSubmit}>
+                <div>
+                    <label htmlFor="ingredient">Name: </label>
+                    <input
+                        type="text"
+                        id="ingredient"
+                        name="ingredient"
+                        value={ingredient}
+                        placeholder="Enter a ingredient"
+                        onChange={onChange}
+                    />
+                </div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+            <pre>{JSON.stringify(formData, null, 2)}</pre>
+        </div>
+    );
+
+    async function invertState(ingredient) {
+        const response = await fetch(`http://localhost:5000/api/inventory/${ingredient._id}/invert`, {method: 'PUT'})
         if (!response.ok) {
             const message = `An error occurred: ${response.statusText}`
             window.alert(message)
             return
         }
-        const record = await response.json();
-        setRecord({...record, record})
+        //todo this reloads all ingredients?
+        const newResponse = await fetch(`http://localhost:5000/api/inventory`)
+        const newIngredients = await newResponse.json();
+        setIngredients(newIngredients)
+
     }
 
-    //todo loading spinner / content loader
-    return (
-
-        <div>
-            <div className="row-cols-auto">
-                <h1>{record.name} Inventar <a className="btn"></a> </h1>
-                {
-                    //<Link className="btn btn-warning" to={`/recipes/details/${record._id}`}>bearbeiten</Link>
-                }
-            </div>
-            <div className="tile-container">
-                {!isLoading ? record.ingredients.map((ingredient, index) =>
-                    {
-                        var color
-                        if (ingredient.state) color ="btn-success"
-                        else
-                            color = "btn-danger"
-                        return <button key={index} className={`tile border border-1 text-center btn ${color}`} onClick={
-                            () => changeStatus(record._id, ingredient._id)
-                        }>{ingredient.ingredient}</button>
 
 
-                    }
-                    ) : null}
 
-            </div>
 
-        </div>
 
-    );
 }

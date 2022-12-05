@@ -49,3 +49,49 @@ body {
 .header li:hover {
     background-color: #777;
 }
+
+.button {
+    background: inherit;
+    color: black;
+    border: none;
+    padding: 0.5rem;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    font-weight: bold;
+}
+
+.recipe{
+    color: #16465d;
+    background: #c8eafa;
+    font-size: 3em;
+    padding: 5px;
+    margin-top: 10px;
+    white-space: nowrap;
+    border-radius: 10px;
+    box-shadow: 5px 5px #282c34;
+}
+
+.overview{
+    color: #ff3784;
+    display: flex;
+    font-size: 1em;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.header1 {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+    padding: 0em;
+    margin-bottom: 1em;
+    background-color: rgb(26, 192, 134);
+    color: #fff;
+    box-shadow: 5px 10px #282c34;
+}

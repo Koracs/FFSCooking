@@ -1,16 +1,16 @@
 const express = require('express')
 const router = express.Router()
 const {
-    getInventories,
     getInventory,
-    setInventory,
-    updateInventory,
-    deleteInventory,
-    invertIngrediantStatus
+    getIngredient,
+    setIngredient,
+    updateIngredient,
+    deleteIngredient,
+    invertIngredientStatus
 } = require('./controller')
 
-router.route('/').get(getInventories).post(setInventory)
-router.route('/:id').delete(deleteInventory).put(updateInventory).get(getInventory)
-router.route('/:id/ingredient/:ingredientid').put(invertIngrediantStatus)
+router.route('/').get(getInventory).post(setIngredient)
+router.route('/:id').delete(deleteIngredient).put(updateIngredient).get(getIngredient)
+router.route('/:id/invert').put(invertIngredientStatus)
 
 module.exports = router

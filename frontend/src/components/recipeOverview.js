@@ -18,7 +18,6 @@ export default function RecipeOverview() {
                 const response = await fetch(`http://localhost:5000/api/recipes`);
 
                 if (!response.ok) {
-                    console.log("error")
                     const message = `An error occurred: ${response.statusText}`;
                     window.alert(message);
                     return;

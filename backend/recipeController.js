@@ -35,13 +35,13 @@ const setRecipe = asyncHandler(async (req, res) => {
         throw new Error('Please add a ingredients field')
     }
 
-    const goal = await Recipe.create({
+    const recipe = await Recipe.create({
         name: req.body.name,
         description: req.body.description,
         ingredients: req.body.ingredients,
     })
 
-    res.status(200).json(goal)
+    res.status(200).json(recipe)
 })
 
 

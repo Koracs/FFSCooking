@@ -1,141 +1,102 @@
 const asyncHandler = require('express-async-handler')
 
 const Inventory = require('./model')
-const mongoose = require('mongoose')
-
-const getInventories = asyncHandler(async (req, res) => {
-    const inventories = await Inventory.find()
-
-    res.status(200).json(inventories)
-})
 
 const getInventory = asyncHandler(async (req, res) => {
-    const inventory = await Inventory.findById(req.params.id)
-
-    if (!inventory) {
-        res.status(400)
-        throw new Error('Recipe not found')
-    }
-
-    console.log(inventory)
-
-    res.status(200).json(inventory)
-})
-
-//not complete -> structure: final URI: inventory/id/ingredients
-const getIngredients= asyncHandler(async (req, res) => {
-
-    res.status(200).body("URI: inventory/id/ingredients")
-})
-
-//not complete -> structure: final URI: inventory/id/ingredient/id
-const getIngredient= asyncHandler(async (req, res) => {
-    const inventory = await Inventory.findOne({'_id':req.params.id,'ingredients._id': req.params.ingredientid})
-    //const inventory = await Inventory.findOne({'ingredients._id': mongoose.Types.ObjectId(req.params.ingredientid)})
-
+    const inventory = await Inventory.find()
 
     if (!inventory) {
         res.status(400)
         throw new Error('Inventory not found')
     }
 
-
-    //ProductModel.findOneAndUpdate({"products.productCode": userData.productCode}, {$set: {"products.$": dataToBeUpdated}})
-    //ProductModel.findOneAndUpdate({'_id':req.params.id,'ingredients._id': req.params.ingredientid}, {$set: {"products.$": dataToBeUpdated}})
-    const updateInventory = await Inventory.findOneAndUpdate({'_id':req.params.id,'ingredients._id': req.params.ingredientid}, {$set: inventory}, {new: true})
-
     res.status(200).json(inventory)
 })
 
+const getIngredient = asyncHandler(async (req, res) => {
+    const ingredient = await Inventory.findById(req.params.id)
 
-const setInventory = asyncHandler(async (req, res) => {
-    if (!req.body.name) {
+    if (!ingredient) {
         res.status(400)
-        throw new Error('Please add a name field')
+        throw new Error('Ingredient not found')
     }
-    console.log(req.body)
-    if (!req.body.ingredients) {
+
+    res.status(200).json(ingredient)
+})
+
+
+const setIngredient = asyncHandler(async (req, res) => {
+    if (!req.body.ingredient) {
         res.status(400)
-        throw new Error('Please add a ingredients field')
+        throw new Error('Please add a ingredient field')
+    }
+    if (!req.body.state) {
+        res.status(400)
+        throw new Error('Please add a state field')
     }
 
     const inventory = await Inventory.create({
-        name: req.body.name,
-        ingredients: req.body.ingredients,
+        ingredient: req.body.ingredient,
+        state: req.body.state,
     })
 
     res.status(200).json(inventory)
 })
 
 
-const updateInventory = asyncHandler(async (req, res) => {
-    const inventory = await Inventory.findById(req.params.id)
+const updateIngredient = asyncHandler(async (req, res) => {
+    const ingredient = await Inventory.findById(req.params.id)
 
-    if (!inventory) {
+    if (!ingredient) {
         res.status(400)
-        throw new Error('Inventory not found')
+        throw new Error('Ingredient not found')
     }
 
-    console.log(inventory)
-    const updateInventory = await Inventory.findByIdAndUpdate(req.params.id, req.body, {
+    const updateIngredient = await Inventory.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
     })
 
-    res.status(200).json(updateInventory)
+    res.status(200).json(updateIngredient)
 })
 
 
+//todo ansehen
+const invertIngredientStatus = asyncHandler(async (req, res) => {
+    const ingredient = await Inventory.findById(req.params.id)
 
-const invertIngrediantStatus = asyncHandler(async (req, res) => {
-    const inventory = await Inventory.findOne({'_id':req.params.id,'ingredients._id': req.params.ingredientid})
-    //const inventory = await Inventory.findOne({'ingredients._id': mongoose.Types.ObjectId(req.params.ingredientid)})
-
-
-    if (!inventory) {
+    if (!ingredient) {
         res.status(400)
-        throw new Error('Inventory not found')
+        throw new Error('Ingredient not found')
     }
 
-    console.log(inventory.ingredients[0]._id)
-    for (const inventoryKey in inventory.ingredients) {
-        console.log(inventory.ingredients[inventoryKey].id)
-        console.log(inventory.ingredients[inventoryKey].state)
-        if(inventory.ingredients[inventoryKey].id === req.params.ingredientid){
-            inventory.ingredients[inventoryKey].state = !inventory.ingredients[inventoryKey].state
-            break
-        }
+    ingredient.state = !ingredient.state;
 
-        console.log(inventory.ingredients[inventoryKey].state)
-    }
+    const updateIngredient = await Inventory.findByIdAndUpdate(req.params.id, ingredient, {
+        new: true,
+    })
 
-    //ProductModel.findOneAndUpdate({"products.productCode": userData.productCode}, {$set: {"products.$": dataToBeUpdated}})
-    //ProductModel.findOneAndUpdate({'_id':req.params.id,'ingredients._id': req.params.ingredientid}, {$set: {"products.$": dataToBeUpdated}})
-    const updateInventory = await Inventory.findOneAndUpdate({'_id':req.params.id,'ingredients._id': req.params.ingredientid}, {$set: inventory}, {new: true})
-
-    res.status(200).json(updateInventory)
+    res.status(200).json(updateIngredient)
 })
 
 
-const deleteInventory = asyncHandler(async (req, res) => {
-    const recipe = await Inventory.findById(req.params.id)
+const deleteIngredient = asyncHandler(async (req, res) => {
+    const ingredient = await Inventory.findById(req.params.id)
 
-    if (!recipe) {
+    if (!ingredient) {
         res.status(400)
         throw new Error('Recipe not found')
     }
 
-    await recipe.remove()
+    await ingredient.remove()
 
     res.status(200).json({ id: req.params.id })
 })
 
 module.exports = {
-    getInventories,
-    getInventory,
-    getIngredient,
-    getIngredients,
-    setInventory,
-    updateInventory,
-    invertIngrediantStatus,
-    deleteInventory,
+    getInventory: getInventory,
+    getIngredient: getIngredient,
+    setIngredient: setIngredient,
+    updateIngredient: updateIngredient,
+    deleteIngredient: deleteIngredient,
+    invertIngredientStatus: invertIngredientStatus
 }
