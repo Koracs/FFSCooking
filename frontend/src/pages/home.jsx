@@ -10,9 +10,13 @@ export default function Home() {
 
     return (
         <>
-            <div>
+            <div style={{ backgroundImage:`url(${background_photo})`}}>
                 <br/>
                 <h1>Willkommen auf deinem Kochbuch</h1>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
                 <br/>
                 <h3>Deine Rezepte an einem Ort</h3>
                 <p>Speichere alle Rezepte an einem Ort und schon kannst du diese jederzeit abrufen.</p>
@@ -22,17 +26,36 @@ export default function Home() {
                 <h3>Über uns:</h3>
 
                 <h4>Felix</h4>
-                <img src={logo_felix} alt="Bild Felix" height={200} />
+                <img src={logo_felix} alt="Bild Felix" height={180} />
 
                 <h4>Sebastian</h4>
-                <img src={logo_sebastian} alt="Bild Sebastian" height={200} />
+                <img src={logo_sebastian} alt="Bild Sebastian" height={180} />
 
                 <h4>Stefan</h4>
-                <img src={logo_stefan} alt="Bild Stefan" height={200} />
+                <img src={logo_stefan} alt="Bild Stefan" height={180} />
+
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+
+
 
 
             </div>
-            <div style={{ backgroundImage:`url(${background_photo})`}}></div>
+
+
 
 
         </>

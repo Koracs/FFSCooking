@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f694091-9668-48eb-af7d-26667e3ee519" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Photos/Felix.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Photos/Sebastian.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Photos/Stefan.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Photos/background_photo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/home.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +60,7 @@
       <workItem from="1670416334189" duration="941000" />
       <workItem from="1670421476931" duration="6214000" />
       <workItem from="1672125152616" duration="366000" />
-      <workItem from="1672125910724" duration="8108000" />
+      <workItem from="1672125910724" duration="8553000" />
     </task>
     <servers />
   </component>
