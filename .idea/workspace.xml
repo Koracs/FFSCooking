@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f694091-9668-48eb-af7d-26667e3ee519" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/Recipe_Photos/Produkte.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Photos/Produkte.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/Inventory_Photos/Produkte.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/recipeOverview.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/recipeOverview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/addRecipe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/addRecipe.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +53,12 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\CE\KT\FFSCooking\frontend\src\pages\Photos" />
+      <recent name="D:\CE\KT\FFSCooking\frontend\src\components\Recipe_Photos" />
+      <recent name="D:\CE\KT\FFSCooking\frontend\src\pages\inventory\Inventory_Photos" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CE\KT\FFSCooking\frontend\src\components\Receipe_Photos" />
+      <recent name="D:\CE\KT\FFSCooking\frontend\src\pages\inventory\Inventory_Photos" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -60,7 +74,8 @@
       <workItem from="1670416334189" duration="941000" />
       <workItem from="1670421476931" duration="6214000" />
       <workItem from="1672125152616" duration="366000" />
-      <workItem from="1672125910724" duration="8553000" />
+      <workItem from="1672125910724" duration="9426000" />
+      <workItem from="1672228651577" duration="5322000" />
     </task>
     <servers />
   </component>

@@ -102,7 +102,6 @@ export default function ViewInventory() {
                     <button type="submit">Submit</button>
                 </div>
             </form>
-            <pre>{JSON.stringify(formData, null, 2)}</pre>
         </div>
     );
 

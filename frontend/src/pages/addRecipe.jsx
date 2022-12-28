@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import lachs_photo from './Photos/Produkte.jpg'
 
 export default function AddRecipe() {
     const [formData, setFormData] = useState({
@@ -51,8 +52,10 @@ export default function AddRecipe() {
         navigate("/recipes/new") //todo redirect to new recipe link (post response?)
     }
 
+    console.log(lachs_photo);
+
     return (
-        <div>
+        <div style={{ backgroundImage:`url(${lachs_photo})`}}>
             <h1>Create new Recipe</h1>
             <form onSubmit={onSubmit}>
                 <div>
@@ -103,9 +106,22 @@ export default function AddRecipe() {
                 })
             }}>Add Ingredient
             </button>
-            <div>
-                <pre>{JSON.stringify(formData, null, 2)}</pre>
-            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
         </div>
     )
 }

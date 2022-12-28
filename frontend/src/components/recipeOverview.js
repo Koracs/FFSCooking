@@ -2,6 +2,7 @@ import "./overview.css";
 import "./recipe.css";
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import recipe_photo from './Recipe_Photos/Produkte.jpg'
 
 const RecipeLink = (props) => (
     <div>
@@ -44,12 +45,37 @@ export default function RecipeOverview() {
         });
     }
 
+    console.log(recipe_photo);
+
     return (
-        <div>
+        <div style={{ backgroundImage:`url(${recipe_photo})`}}>
             <h1>Recipe Overview</h1>
             <ul className="overview">
                 {recipeList()}
             </ul>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+
         </div>
     );
 }
