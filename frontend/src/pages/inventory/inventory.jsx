@@ -19,9 +19,6 @@ export default function Inventory() {
                 <br/>
                 <br/>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
 
 
             </div>

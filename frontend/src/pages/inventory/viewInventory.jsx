@@ -45,6 +45,23 @@ export default function ViewInventory() {
         setIngredients(newIngredients)
     }
 
+    async function onDelete(e) {
+        e.preventDefault();
+        if(window.confirm("Delete Inventory?")) {
+
+            await fetch(`http://localhost:5000/api/inventory${par_del.id}`, {
+                method: "DELETE",
+            }).catch(error => {
+                window.alert(error);
+                return;
+            });
+
+            const newResponse = await fetch(`http://localhost:5000/api/inventory`)
+            const newIngredients = await newResponse.json();
+            setIngredients(newIngredients)
+        }
+    }
+
     useEffect(() => {
         async function getInventory() {
 
@@ -79,6 +96,8 @@ export default function ViewInventory() {
         });
     }
 
+    const par_del = "";
+
     return (
         <div>
             <h1>My Inventory</h1>
@@ -94,12 +113,27 @@ export default function ViewInventory() {
                         id="ingredient"
                         name="ingredient"
                         value={ingredient}
-                        placeholder="Enter a ingredient"
+                        placeholder="Enter an ingredient"
                         onChange={onChange}
                     />
                 </div>
                 <div>
                     <button type="submit">Submit</button>
+                    <br/>
+                    <br/>
+                </div>
+            </form>
+            <h3>Delete Ingredient</h3>
+            <form onDelete={onDelete}>
+                <div>
+                    <label htmlFor="ingredient_id">ID: </label>
+                    <input
+                        value={par_del}
+                        placeholder="Enter id of ingredient"
+                    />
+                </div>
+                <div>
+                    <button type="submit_delete">Delete</button>
                 </div>
             </form>
         </div>

@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f694091-9668-48eb-af7d-26667e3ee519" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Recipe_Photos/Produkte.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/Photos/Produkte.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/Inventory_Photos/Produkte.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/recipeOverview.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/recipeOverview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/addRecipe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/addRecipe.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/robots.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" afterDir="false" />
     </list>
@@ -39,17 +36,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/CE/KT/FFSCooking/frontend/src/pages/Photos",
-    "list.type.of.created.stylesheet": "CSS",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/CE/KT/FFSCooking/frontend/src/pages/Photos&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\CE\KT\FFSCooking\frontend\src\pages\Photos" />
@@ -76,6 +73,7 @@
       <workItem from="1672125152616" duration="366000" />
       <workItem from="1672125910724" duration="9426000" />
       <workItem from="1672228651577" duration="5322000" />
+      <workItem from="1672317012142" duration="3894000" />
     </task>
     <servers />
   </component>
