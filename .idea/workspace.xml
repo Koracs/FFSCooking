@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f694091-9668-48eb-af7d-26667e3ee519" name="Changes" comment="">
+    <list default="true" id="4f694091-9668-48eb-af7d-26667e3ee519" name="Changes" comment="added todo">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/addRecipe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/addRecipe.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/editInventory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/recipe.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/recipeOverview.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/recipeOverview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +36,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2IZbEmhRbPfSaEYZeRvxLtleAqt" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -45,12 +57,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\CE\KT\FFSCooking\frontend\src\pages\Photos" />
-      <recent name="D:\CE\KT\FFSCooking\frontend\src\components\Recipe_Photos" />
-      <recent name="D:\CE\KT\FFSCooking\frontend\src\pages\inventory\Inventory_Photos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\CE\KT\FFSCooking\frontend\src\components\Receipe_Photos" />
-      <recent name="D:\CE\KT\FFSCooking\frontend\src\pages\inventory\Inventory_Photos" />
+      <recent name="D:\WebStorm\FFSCooking\frontend\src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -66,10 +75,7 @@
       <workItem from="1670416334189" duration="941000" />
       <workItem from="1670421476931" duration="6214000" />
       <workItem from="1672125152616" duration="366000" />
-      <workItem from="1672125910724" duration="9426000" />
-      <workItem from="1672228651577" duration="5322000" />
-      <workItem from="1672317012142" duration="3894000" />
-      <workItem from="1672727039661" duration="1353000" />
+      <workItem from="1672125910724" duration="8553000" />
     </task>
     <servers />
   </component>

@@ -1,15 +1,6 @@
-import "./overview.css";
-import "./recipe.css";
+import "../styles.css";
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import recipe_photo from './Recipe_Photos/Produkte.jpg'
-
-const RecipeLink = (props) => (
-    <div>
-    <Link to={`/recipes/${props.recipe._id}`}> {props.recipe.name}</Link>
-    </div>
-);
-
 
 export default function RecipeOverview() {
     const [recipes, setRecipes] = useState([]);
@@ -35,47 +26,37 @@ export default function RecipeOverview() {
 
 
     function recipeList() {
-        return recipes.map((recipe) => {
+        const test = recipes.sort((a, b) => a.name.localeCompare(b.name))
+        return test.map((recipe) => {
             return (
-
-                <li className={"header"} key={recipe._id}>
-                    <RecipeLink recipe={recipe}/>
+                <li key={recipe._id}>
+                    <Link className="recipeButton" to={`/recipes/${recipe._id}`}> {recipe.name}</Link>
                 </li>
             );
         });
     }
 
-    console.log(recipe_photo);
+    function sortRecipes(value){
+        console.log(value);
+        console.log(value.value);
+        /*if(id === 1) console.log(1)
+        if(id === 2) console.log(2)
+        if(id === 3) console.log(3)*/
+        console.log("nix")
+    }
 
     return (
-        <div style={{ backgroundImage:`url(${recipe_photo})`}}>
+        <div >
             <h1>Recipe Overview</h1>
+            <label>Sort: </label>
+            <select id="sort" onChange={() => sortRecipes(this)}>
+                <option value="Value1">Oldest First</option>
+                <option value="Value2">Newest First</option>
+                <option value="Value3">A - Z</option>
+            </select>
             <ul className="overview">
                 {recipeList()}
             </ul>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-
         </div>
     );
 }

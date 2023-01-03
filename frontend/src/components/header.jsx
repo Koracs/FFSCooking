@@ -1,5 +1,4 @@
 import React from "react";
-import "./header.css"
 import {Link, NavLink} from "react-router-dom"
 
 const Header = ({ history, handleSubmit }) => {
@@ -7,8 +6,8 @@ const Header = ({ history, handleSubmit }) => {
         <nav className ="header">
             <NavLink to="/" className="site-title">FSS Cooking</NavLink>
             <ul>
-                <NavLink to={"/recipes"}>Recipes</NavLink>
-                <NavLink to={"/inventory"}>Inventory</NavLink>
+                <li><NavLink to={"/recipes"}>Recipes</NavLink></li>
+                <li><NavLink to={"/inventory"}>Inventory</NavLink></li>
             </ul>
         </nav>
     );

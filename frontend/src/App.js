@@ -1,6 +1,7 @@
 import React from 'react';
-import './components/styles.css';
+import './styles.css';
 import Header from "./components/header";
+import Footer from "./components/footer";
 import {Route, Routes } from "react-router-dom"
 import Home from "./pages/home";
 import Recipes from "./pages/recipes";
@@ -8,12 +9,13 @@ import Inventory from "./pages/inventory/inventory";
 import ViewRecipe from "./pages/viewRecipe";
 import AddRecipe from "./pages/addRecipe";
 import EditRecipe from "./pages/editRecipe";
+import EditInventory from "./pages/inventory/editInventory";
 
 function App() {
   return (
       <>
-        <Header/>
-          <div className="container">
+          <Header/>
+          <div className="box container">
               <Routes>
                   <Route path="/" element = {<Home/>}/>
                   <Route path="/recipes" >
@@ -23,9 +25,11 @@ function App() {
                       <Route path="edit/:id" element = {<EditRecipe />}/>
                   </Route>
                   <Route path="/inventory" element = {<Inventory/>}/>
+                  <Route path="/inventory/edit" element={ <EditInventory/>}/>
                   <Route path="*" element = {<Home/>}/>
               </Routes>
           </div>
+          <Footer/>
       </>
   );
 }

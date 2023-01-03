@@ -1,5 +1,4 @@
 import React from "react";
-import './home.css';
 import logo_stefan from './Photos/Stefan.jpg'
 import logo_felix from './Photos/Felix.jpg'
 import logo_sebastian from './Photos/Sebastian.jpg'
@@ -10,16 +9,8 @@ export default function Home() {
 
     return (
         <>
-            <div style={{ backgroundImage:`url(${background_photo})`}}>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <h3 style={{ color: 'black', fontSize: '40px' }}>Deine besten Rezepte an einem Ort</h3>
+            <div>
+                <h1 style={{ color: 'black', fontSize: '40px' }}>Deine besten Rezepte an einem Ort</h1>
                 <p style={{ color: 'black', fontSize: '20px' }}>Speichere alle Rezepte an einem Ort und schon kannst du diese jederzeit abrufen.</p>
                 <p style={{ color: 'black', fontSize: '20px' }}>Egal ob am PC, dem iPad, Smartphone und Co. Du brauchst nur einen modernen Browser :) </p>
 
@@ -49,7 +40,6 @@ export default function Home() {
                 <br/>
                 <br/>
                 <br/>
-
             </div>
         </>
     )

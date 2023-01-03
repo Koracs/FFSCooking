@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import "../../styles.css";
 
 
 export default function ViewInventory() {
@@ -47,7 +48,7 @@ export default function ViewInventory() {
 
     async function onDelete(e) {
         e.preventDefault();
-        if(window.confirm("Delete Inventory?")) {
+        if (window.confirm("Delete Inventory?")) {
 
             await fetch(`http://localhost:5000/api/inventory${par_del.id}`, {
                 method: "DELETE",
@@ -100,7 +101,12 @@ export default function ViewInventory() {
 
     return (
         <div>
-            <h1>My Inventory</h1>
+            <h1 className="">My Inventory</h1>
+            <div style={{textAlign:"right"}}>
+                <Link to={`/inventory/edit`} className="button"> Edit Inventory </Link>
+                <br/>
+                <br/>
+            </div>
             <ul className="overview">
                 {ingredientList()}
             </ul>
@@ -123,19 +129,6 @@ export default function ViewInventory() {
                     <br/>
                 </div>
             </form>
-            <h3>Delete Ingredient</h3>
-            <form onDelete={onDelete}>
-                <div>
-                    <label htmlFor="ingredient_id">ID: </label>
-                    <input
-                        value={par_del}
-                        placeholder="Enter id of ingredient"
-                    />
-                </div>
-                <div>
-                    <button type="submit_delete">Delete</button>
-                </div>
-            </form>
         </div>
     );
 
@@ -152,10 +145,6 @@ export default function ViewInventory() {
         setIngredients(newIngredients)
 
     }
-
-
-
-
 
 
 }
