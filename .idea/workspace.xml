@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f694091-9668-48eb-af7d-26667e3ee519" name="Changes" comment="added todo">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="4f694091-9668-48eb-af7d-26667e3ee519" name="Changes" comment="Delete Ingredients, Stlye Changes, Footer, refactoring">
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/addIngregient.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Test/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Test/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Recipe_Photos/Produkte.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/footer.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/editInventory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/recipe.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/recipeOverview.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/recipeOverview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/recipeOverview.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/recipes/recipeOverview.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Photos/Felix.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Photos/Felix.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Photos/Produkte.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Photos/Sebastian.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Photos/Sebastian.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Photos/Stefan.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Photos/Stefan.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/Photos/background_photo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/addRecipe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/recipes/addRecipe.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/editRecipe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/recipes/editRecipe.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/Inventory_Photos/Produkte.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/editInventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/editInventory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/recipes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/recipes/recipes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/viewRecipe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/recipes/viewRecipe.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,23 +53,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/CE/KT/FFSCooking/frontend/src/pages/Photos&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/CE/KT/FFSCooking/frontend/src/pages/Photos",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\CE\KT\FFSCooking\frontend\src\pages\Photos" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WebStorm\FFSCooking\frontend\src\pages" />
       <recent name="D:\WebStorm\FFSCooking\frontend\src" />
+      <recent name="D:\WebStorm\FFSCooking\frontend\src\pages\recipes" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -76,7 +90,16 @@
       <workItem from="1670421476931" duration="6214000" />
       <workItem from="1672125152616" duration="366000" />
       <workItem from="1672125910724" duration="8553000" />
+      <workItem from="1672754799988" duration="6786000" />
     </task>
+    <task id="LOCAL-00001" summary="Delete Ingredients, Stlye Changes, Footer, refactoring">
+      <created>1672744076643</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672744076643</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,5 +115,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Delete Ingredients, Stlye Changes, Footer, refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete Ingredients, Stlye Changes, Footer, refactoring" />
   </component>
 </project>

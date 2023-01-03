@@ -1,12 +1,9 @@
 import React from "react";
-import logo_stefan from './Photos/Stefan.jpg'
-import logo_felix from './Photos/Felix.jpg'
-import logo_sebastian from './Photos/Sebastian.jpg'
-import background_photo from './Photos/background_photo.jpg'
+import logo_stefan from '../Photos/Stefan.jpg'
+import logo_felix from '../Photos/Felix.jpg'
+import logo_sebastian from '../Photos/Sebastian.jpg'
 
 export default function Home() {
-    console.log(logo_felix, logo_stefan, logo_sebastian, background_photo);
-
     return (
         <>
             <div>
@@ -24,22 +21,6 @@ export default function Home() {
 
                 <h4>Stefan</h4>
                 <img src={logo_stefan} alt="Bild Stefan" height={180} />
-
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
             </div>
         </>
     )

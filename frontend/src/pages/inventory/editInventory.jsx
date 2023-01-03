@@ -48,7 +48,7 @@ export default function EditInventory() {
             return (
 
                 <li key={ingredient._id}>
-                    <button className={"button"} key={ingredient._id} onClick={() => onDelete(ingredient._id)}>
+                    <button className={"ingredientButton"} key={ingredient._id} onClick={() => onDelete(ingredient._id)}>
                         {ingredient.ingredient} </button>
                 </li>
             );
@@ -57,11 +57,12 @@ export default function EditInventory() {
 
     return (
         <div>
-            <h1>Edit Inventory</h1>
-            <div style={{textAlign:"right"}}>
-                <Link to={`/inventory/`} className="button"> Go Back </Link>
-                <br/>
-                <br/>
+            <div style={{display:"flex",justifyContent:"space-around",alignItems:"center"}}>
+                <span style={{width:"15%"}}></span>
+                <h1 style={{width:"70%", textAlign:"center"}}>Edit Inventory</h1>
+                <span style={{width:"15%"}}>
+                    <Link to={`/inventory/`} className="button"> Go Back </Link>
+                </span>
             </div>
             <ul className="overview">
                 {ingredientList()}

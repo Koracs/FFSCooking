@@ -87,9 +87,8 @@ export default function ViewInventory() {
     function ingredientList() {
         return ingredients.map((ingredient) => {
             return (
-
                 <li key={ingredient._id}>
-                    <button className={"button"} style={{background: ingredient.state ? "#00ff00" : "#ff0000"}}
+                    <button className={"ingredientButton"} style={{background: ingredient.state ? "rgba(0,255,0,0.6)" : "rgba(255,0,0,0.6)"}}
                             key={ingredient._id} onClick={() => invertState(ingredient)}>
                         {ingredient.ingredient} </button>
                 </li>
@@ -101,19 +100,13 @@ export default function ViewInventory() {
 
     return (
         <div>
-            <h1 className="">My Inventory</h1>
-            <div style={{textAlign:"right"}}>
-                <Link to={`/inventory/edit`} className="button"> Edit Inventory </Link>
-                <br/>
-                <br/>
-            </div>
             <ul className="overview">
                 {ingredientList()}
             </ul>
-            <h3>Add Ingredient</h3>
+            <br/>
             <form onSubmit={onSubmit}>
                 <div>
-                    <label htmlFor="ingredient">Name: </label>
+                    <label htmlFor="ingredient">Add Ingredient: </label>
                     <input
                         type="text"
                         id="ingredient"
@@ -122,11 +115,7 @@ export default function ViewInventory() {
                         placeholder="Enter an ingredient"
                         onChange={onChange}
                     />
-                </div>
-                <div>
                     <button type="submit">Submit</button>
-                    <br/>
-                    <br/>
                 </div>
             </form>
         </div>

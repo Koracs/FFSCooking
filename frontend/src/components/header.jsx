@@ -1,7 +1,7 @@
 import React from "react";
 import {Link, NavLink} from "react-router-dom"
 
-const Header = ({ history, handleSubmit }) => {
+const Header = ({ history, handleSubmit }) => { //todo add active page?
     return (
         <nav className ="header">
             <NavLink to="/" className="site-title">FSS Cooking</NavLink>

@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import lachs_photo from './Photos/Produkte.jpg'
 
 export default function AddRecipe() {
     const [formData, setFormData] = useState({
@@ -54,12 +53,10 @@ export default function AddRecipe() {
         window.location = '/recipes';
     }
 
-    console.log(lachs_photo);
-
 
 
     return (
-        <div style={{ backgroundImage:`url(${lachs_photo})`}}>
+        <div>
             <h1>Create new Recipe</h1>
             <form onSubmit={onSubmit}>
                 <div>
