@@ -50,9 +50,13 @@ export default function AddRecipe() {
         //todo: no confirmation showing
         setFormData({name: "", description: "", ingredients: [{ingredient: ""}]})
         navigate("/recipes/new") //todo redirect to new recipe link (post response?)
+
+        window.location = '/recipes';
     }
 
     console.log(lachs_photo);
+
+
 
     return (
         <div style={{ backgroundImage:`url(${lachs_photo})`}}>
