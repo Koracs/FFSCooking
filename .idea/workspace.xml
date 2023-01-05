@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f694091-9668-48eb-af7d-26667e3ee519" name="Changes" comment="refactoring, styling, sorting/filtering">
+    <list default="true" id="4f694091-9668-48eb-af7d-26667e3ee519" name="Changes" comment="refactoring, new inventory logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/editInventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/editInventory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/inventory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/inventory/viewInventory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/recipes/recipes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/recipes/recipes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/recipes/viewRecipe.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/recipes/viewRecipe.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +99,7 @@
       <workItem from="1672125910724" duration="8553000" />
       <workItem from="1672754799988" duration="6874000" />
       <workItem from="1672853435418" duration="354000" />
-      <workItem from="1672909431816" duration="6507000" />
+      <workItem from="1672909431816" duration="13562000" />
     </task>
     <task id="LOCAL-00001" summary="Delete Ingredients, Stlye Changes, Footer, refactoring">
       <created>1672744076643</created>
@@ -118,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672761723814</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="refactoring, new inventory logic">
+      <created>1672920332479</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672920332479</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +142,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Delete Ingredients, Stlye Changes, Footer, refactoring" />
     <MESSAGE value="refactoring, styling, sorting/filtering" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring, styling, sorting/filtering" />
+    <MESSAGE value="refactoring, new inventory logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring, new inventory logic" />
   </component>
 </project>

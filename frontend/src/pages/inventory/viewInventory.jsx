@@ -9,6 +9,10 @@ export default function ViewInventory({ingredients,invertStateHandler}) {
         invertStateHandler(ingredient);
     }
 
+    useEffect(()=>{
+        console.log("ingredients")
+    },[ingredients])
+
     return (
         <div>
             <ul className="overview">
