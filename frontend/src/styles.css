@@ -27,7 +27,7 @@ body {
     align-items: stretch;
     gap: 2rem;
     padding: 0 1rem;
-    position:absolute;
+    position: fixed;
     left:0;
     bottom:0;
     right:0;
