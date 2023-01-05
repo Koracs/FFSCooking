@@ -44,7 +44,7 @@ export default function Recipes() {
                 </span>
             </div>
             <div style={{textAlign:"right", padding:"1rem"}}>
-                <label>Search:</label>
+                <label>Search: </label>
                 <input
                     id="search"
                     name="search"

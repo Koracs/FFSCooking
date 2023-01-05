@@ -7,7 +7,7 @@ export default function EditInventory() {
     const [isLoading, setIsLoading] = useState(true);
 
     async function onDelete(id) {
-        if(window.confirm("Delete Ingredient?")) {
+        if (window.confirm("Delete Ingredient?")) {
 
             await fetch(`http://localhost:5000/api/inventory/${id}`, {
                 method: "DELETE",
@@ -43,36 +43,27 @@ export default function EditInventory() {
     }, [ingredients.length]);
 
 
-    function ingredientList() {
-        return ingredients.map((ingredient) => {
-            return (
-
-                <li key={ingredient._id}>
-                    <button className={"ingredientButton"} key={ingredient._id} onClick={() => onDelete(ingredient._id)}>
-                        {ingredient.ingredient} </button>
-                </li>
-            );
-        });
-    }
-
     return (
         <div>
-            <div style={{display:"flex",justifyContent:"space-around",alignItems:"center"}}>
-                <span style={{width:"15%"}}></span>
-                <h1 style={{width:"70%", textAlign:"center"}}>Edit Inventory</h1>
-                <span style={{width:"15%"}}>
-                    <Link to={`/inventory/`} className="button"> Go Back </Link>
+            <div style={{display: "flex", justifyContent: "space-around", alignItems: "center"}}>
+                <span style={{width: "15%"}}></span>
+                <h1 style={{width: "70%", textAlign: "center"}}>Edit Inventory</h1>
+                <span style={{width: "15%", textAlign: "right"}}>
+                    <Link to={`/inventory`} className="button"> Go Back </Link>
                 </span>
             </div>
             <ul className="overview">
-                {ingredientList()}
+                {ingredients.map((ingredient) => <li key={ingredient._id}>
+                    {
+                        <button className={"ingredientButton"} key={ingredient._id}
+                                onClick={() => onDelete(ingredient._id)}>{ingredient.ingredient}
+                        </button>
+
+                    }
+                </li>)}
             </ul>
         </div>
     );
-
-
-
-
 
 
 }

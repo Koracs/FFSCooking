@@ -5,7 +5,7 @@ export default function ViewRecipe() {
     const [recipe, setRecipe] = useState([]);
     const params = useParams();
     const navigate = useNavigate();
-    const [isLoading,setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
@@ -36,20 +36,22 @@ export default function ViewRecipe() {
     //todo loading spinner / content loader
     return (
         <>
-            <section>
-                <h1>{recipe.name}</h1>
-                <p>{recipe.description}</p>
-                <p>Zutaten:</p>
-                <ul>
-                    {!isLoading ? recipe.ingredients.map((ingredient, index) =>
-                        <li key={index}> {ingredient.ingredient} </li>) : null}
-                </ul>
-            </section>
-            <section>
-                <div>
-                    <Link to={`/recipes/edit/${recipe._id}`} className=""> Edit Recipe </Link>
-                </div>
-            </section>
+
+            <div style={{display: "flex", justifyContent: "space-around", alignItems: "center"}}>
+                <span style={{width: "15%"}}></span>
+                <h1 style={{width: "70%", textAlign: "center"}}>{recipe.name}</h1>
+                <span style={{width: "15%", textAlign: "right"}}>
+                    <Link to={`/recipes/edit/${recipe._id}`} className="button"> Edit Recipe </Link>
+                    <span> </span>
+                    <Link to={`/recipes`} className="button"> Go Back </Link>
+                </span>
+            </div>
+            <p>{recipe.description}</p>
+            <p>Zutaten:</p>
+            <ul>
+                {!isLoading ? recipe.ingredients.map((ingredient, index) =>
+                    <li key={index}> {ingredient.ingredient} </li>) : null}
+            </ul>
         </>
     );
 }
