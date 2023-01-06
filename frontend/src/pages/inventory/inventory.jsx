@@ -39,24 +39,20 @@ export default function Inventory() {
     }, [ingredients.length]);
 
     useEffect(() => {
-        console.log(sortOrder)
         sortInventory(sortOrder);
     }, [sortOrder])
 
-    useEffect(() => {
-        console.log(ingredients)
-    }, [ingredients])
-
     function sortInventory(sort) {
+        const sortedIngredients = [].concat(ingredients)
         switch (sort) {
             case 'newest':
-                setIngredients(ingredients.sort((a, b) => -1 * a.createdAt.localeCompare(b.createdAt)))
+                setIngredients(sortedIngredients.sort((a, b) => -1 * a.createdAt.localeCompare(b.createdAt)))
                 break;
             case 'oldest':
-                setIngredients(ingredients.sort((a, b) => a.createdAt.localeCompare(b.createdAt)))
+                setIngredients(sortedIngredients.sort((a, b) => a.createdAt.localeCompare(b.createdAt)))
                 break;
             case 'alphabetically':
-                setIngredients(ingredients.sort((a, b) => a.ingredient.localeCompare(b.ingredient)))
+                setIngredients(sortedIngredients.sort((a, b) => a.ingredient.localeCompare(b.ingredient)))
                 break;
             default:
                 break;
@@ -96,7 +92,6 @@ export default function Inventory() {
 
     return (
         <>
-            {isLoading ? <div>Loading</div> : <>
                 <div style={{display: "flex", justifyContent: "space-around", alignItems: "center"}}>
                     <span style={{width: "15%"}}></span>
                     <h1 style={{width: "70%", textAlign: "center"}}>My Inventory</h1>
@@ -123,6 +118,7 @@ export default function Inventory() {
                         <option value="alphabetically">A - Z</option>
                     </select>
                 </div>
+            {isLoading ? <div>Loading</div> : <>
                 <div>
                     <InventoryOverview ingredients={ingredients} invertStateHandler={invertState}/>
                 </div>

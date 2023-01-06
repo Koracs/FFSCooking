@@ -7,10 +7,9 @@
 }
 
 body {
-    /*margin: 0;
-    background: #ACE1AF linear-gradient(#d4e3d5, transparent);*/
+    margin: 0;
+    /*background: #ACE1AF linear-gradient(#d4e3d5, transparent);*/
     background-image: linear-gradient(to top, #b9e3bc 0%, #deecdd 100%);
-
     min-height:100vh
 }
 
@@ -27,7 +26,7 @@ body {
     align-items: stretch;
     gap: 2rem;
     padding: 0 1rem;
-    position:absolute;
+    position:fixed;
     left:0;
     bottom:0;
     right:0;
