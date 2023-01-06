@@ -1,12 +1,16 @@
 import RecipeOverview from "./recipeOverview";
 import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
+import Filter from "../../components/filter";
 
 export default function Recipes() {
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortOrder, setSortOrder] = useState("oldest")
     const [search, setSearch] = useState("");
+    const [filterSelection, setFilterSelection] = useState(1);
+    const inventoryFilter = {1: "all, I don't care", 2: "for which i have goods"};
+    const categories = ["vegan", "I don't care"]
 
     async function getRecipes() {
         setIsLoading(true);
@@ -24,7 +28,7 @@ export default function Recipes() {
 
     useEffect(() => {
             getRecipes();
-        },[recipes.length]
+        }, [recipes.length]
     );
 
     useEffect(() => {
@@ -49,8 +53,37 @@ export default function Recipes() {
         }
     }
 
-    function searchRecipes(recipes){
+    function searchRecipes(recipes) {
         return recipes.filter((recipe) => recipe.name.toLowerCase().includes(search))
+    }
+
+    const handleSelect = selection => {
+        console.log("selection: " + selection)
+
+        setFilterSelection(selection);
+    };
+
+
+    async function applyFilter() {
+        console.log(filterSelection)
+        if (filterSelection !== 2) return
+
+        //setIsLoading(true);
+        //const response = await fetch(`http://localhost:5000/api/inventory?filer=onStock`)
+        //
+        //if (!response.ok) {
+        //    const message = `An error occurred: ${response.statusText}`
+        //    window.alert(message)
+        //    return
+        //}
+        //
+        //const ingredients = await response.json();
+        //Object.entries(ingredients).map(([key, value]) => {
+        //    console.log(value)
+        //})
+        //
+        //setIsLoading(false);
+
     }
 
     return (
@@ -63,6 +96,26 @@ export default function Recipes() {
                 </span>
             </div>
             <div style={{textAlign: "right", padding: "1rem"}}>
+                <Filter label="Filter" onApply={applyFilter}>
+                    I want recepies:<br/>
+                    {
+                        Object.entries(inventoryFilter).map(([key, value]) => {
+                            const isSelected = parseInt(filterSelection) === parseInt(key);
+                            return (
+                                <div key={key}>
+                                    {
+                                        <input type="radio" id={key} value={value}
+                                               checked={isSelected} onChange={() => {
+                                            handleSelect(key)
+                                        }}/>
+                                    }
+                                    {value}
+                                </div>
+                            );
+                        })
+                    }
+                </Filter>
+
                 <label>Search: </label>
                 <input
                     id="search"

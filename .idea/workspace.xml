@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78354940-8c8e-4d54-a36d-d8d870916731" name="Changes" comment="change structure, fix footer position issue, add sorting function to recipe (refreshing does not work)">
+    <list default="true" id="78354940-8c8e-4d54-a36d-d8d870916731" name="Changes" comment="create filter component + basic integration in recipe overview page">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FFSCooking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FFSCooking.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/recipe/controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/recipe/controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/recipe/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/recipe/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/recipes/recipes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/recipes/recipes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -138,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672930049048</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix model controller reference error">
+      <created>1672999800218</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672999800218</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +170,8 @@
     <MESSAGE value="refactoring, styling, sorting/filtering" />
     <MESSAGE value="refactoring, new inventory logic" />
     <MESSAGE value="attempt at sorting" />
-    <option name="LAST_COMMIT_MESSAGE" value="attempt at sorting" />
+    <MESSAGE value="fix model controller reference error" />
+    <MESSAGE value="create filter component + basic integration in recipe overview page" />
+    <option name="LAST_COMMIT_MESSAGE" value="create filter component + basic integration in recipe overview page" />
   </component>
 </project>
