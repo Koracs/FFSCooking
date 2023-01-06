@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78354940-8c8e-4d54-a36d-d8d870916731" name="Changes" comment="create filter component + basic integration in recipe overview page">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/FFSCooking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FFSCooking.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/inventory/controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/inventory/controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/recipes/recipes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/recipes/recipes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +60,7 @@
       <recent name="D:\WebStorm\FFSCooking\frontend\src\pages\recipes" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (1)">
+  <component name="RunManager" selected="npm.start">
     <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
       <command value="run" />
@@ -89,8 +87,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.start (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -148,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672999800218</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="create filter component + basic integration in recipe overview page">
+      <created>1673015862681</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673015862681</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

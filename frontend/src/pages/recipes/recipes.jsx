@@ -36,6 +36,7 @@ export default function Recipes() {
     }, [sortOrder])
 
 
+
     function sortRecipes(sort) {
         const sortedRecipes = [].concat(recipes)
         switch (sort) {
@@ -66,24 +67,57 @@ export default function Recipes() {
 
     async function applyFilter() {
         console.log(filterSelection)
-        if (filterSelection !== 2) return
 
-        //setIsLoading(true);
-        //const response = await fetch(`http://localhost:5000/api/inventory?filer=onStock`)
-        //
-        //if (!response.ok) {
-        //    const message = `An error occurred: ${response.statusText}`
-        //    window.alert(message)
-        //    return
-        //}
-        //
-        //const ingredients = await response.json();
-        //Object.entries(ingredients).map(([key, value]) => {
-        //    console.log(value)
-        //})
-        //
-        //setIsLoading(false);
+        if(parseInt(filterSelection) !== 2) return
+        setIsLoading(true);
+        const response = await fetch(`http://localhost:5000/api/inventory?filter=onStock`)
 
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`
+            window.alert(message)
+            return
+        }
+
+        const ingredients = await response.json();
+        const filteresIngredients = Object.entries(ingredients).map(([key, value]) => {
+            return value.ingredient.toLowerCase()
+        })
+        console.log(filteresIngredients)
+
+        let newList = []
+        let newList2 = []
+
+        for (const reci in recipes) {
+            let isValid = true
+            console.log("NEW recipe")
+            for (const inc in recipes[reci].ingredients) {
+                let currentIng = recipes[reci].ingredients[inc].ingredient.toLowerCase()
+                console.log(filteresIngredients.includes(currentIng))
+                if(!filteresIngredients.includes(currentIng)) {
+                    isValid = false
+                    break;
+                }
+            }
+            console.log("CONCLUSION: "+ isValid)
+            if(isValid){
+                newList.push(recipes[reci]._id)//only ID
+                newList2.push(recipes[reci])// recipe object
+            }
+        }
+        console.log(newList)
+        //const sortedRecipes = [].concat(recipes).filter(a => newList.includes(a._id))
+        //sortedRecipes.filter(a => newList.includes(a._id))
+        //console.log(sortedRecipes)
+        //setRecipes([].concat(recipes).filter(a => newList.includes(a._id)))
+
+        const sortedRecipes = recipes.slice().filter(a => newList.includes(a._id))
+        console.log("sortedRecipes")
+        console.log(sortedRecipes)
+
+
+        setRecipes([...sortedRecipes])
+        console.log(recipes)
+        setIsLoading(false);
     }
 
     return (

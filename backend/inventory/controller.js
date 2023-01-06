@@ -3,7 +3,16 @@ const asyncHandler = require('express-async-handler')
 const Inventory = require('./model')
 
 const getInventory = asyncHandler(async (req, res) => {
-    const inventory = await Inventory.find()
+
+    let inventory = await Inventory.find()
+
+    if (req.query.filter  === 'onStock') {
+        inventory = await Inventory.find({state:true})
+    } else {
+        inventory = await Inventory.find()
+    }
+
+
 
     if (!inventory) {
         res.status(400)
@@ -12,6 +21,7 @@ const getInventory = asyncHandler(async (req, res) => {
 
     res.status(200).json(inventory)
 })
+
 
 const getIngredient = asyncHandler(async (req, res) => {
     const ingredient = await Inventory.findById(req.params.id)
