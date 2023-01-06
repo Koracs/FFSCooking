@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
 
-const Recipe = require('./recipeModel')
+const Recipe = require('./model')
 
 
 const getRecipes = asyncHandler(async (req, res) => {
