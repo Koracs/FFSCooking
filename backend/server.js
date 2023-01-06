@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use('/api/recipes', require('./recipeRoutes'))
+app.use('/api/recipes', require('./recipe/routes'))
 app.use('/api/inventory', require('./inventory/routes'))
 
 app.listen(port, () => console.log(`Server started on port ${port}`))
