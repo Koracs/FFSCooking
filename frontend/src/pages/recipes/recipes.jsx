@@ -5,10 +5,13 @@ import Filter from "../../components/filter";
 
 export default function Recipes() {
     const [recipes, setRecipes] = useState([]);
+    const [availableIngredients, setAvailableIngredients] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortOrder, setSortOrder] = useState("oldest")
     const [search, setSearch] = useState("");
+
     const [filterSelection, setFilterSelection] = useState(1);
+
     const inventoryFilter = {1: "all, I don't care", 2: "for which i have goods"};
     const categories = ["vegan", "I don't care"]
 
@@ -26,16 +29,28 @@ export default function Recipes() {
         setIsLoading(false);
     }
 
+    async function getAvailableIngredients() {
+        const response = await fetch(`http://localhost:5000/api/inventory?filter=onStock`)
+        if (!response.ok) {
+            const message = `An error occurred: ${response.statusText}`
+            window.alert(message)
+            return
+        }
+
+        const result = await response.json();
+        setAvailableIngredients(result)
+    }
+
+
     useEffect(() => {
             getRecipes();
+            getAvailableIngredients();
         }, [recipes.length]
     );
 
     useEffect(() => {
         sortRecipes(sortOrder);
     }, [sortOrder])
-
-
 
     function sortRecipes(sort) {
         const sortedRecipes = [].concat(recipes)
@@ -54,70 +69,44 @@ export default function Recipes() {
         }
     }
 
-    function searchRecipes(recipes) {
-        return recipes.filter((recipe) => recipe.name.toLowerCase().includes(search))
+    function searchRecipes(input) {
+        return input.filter((recipe) => recipe.name.toLowerCase().includes(search))
     }
 
-    const handleSelect = selection => {
-        console.log("selection: " + selection)
+    function cookableRecipes(input) {
+        const ingredientNames = availableIngredients.map(e => e.ingredient.toLowerCase())
+        const filteredRecipeIDs = []
 
-        setFilterSelection(selection);
-    };
-
-
-    async function applyFilter() {
-        console.log(filterSelection)
-
-        if(parseInt(filterSelection) !== 2) return
-        setIsLoading(true);
-        const response = await fetch(`http://localhost:5000/api/inventory?filter=onStock`)
-
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`
-            window.alert(message)
-            return
-        }
-
-        const ingredients = await response.json();
-        const filteresIngredients = Object.entries(ingredients).map(([key, value]) => {
-            return value.ingredient.toLowerCase()
-        })
-        console.log(filteresIngredients)
-
-        let newList = []
-        let newList2 = []
-
-        for (const reci in recipes) {
+        for (const reci in input) {
             let isValid = true
-            console.log("NEW recipe")
-            for (const inc in recipes[reci].ingredients) {
-                let currentIng = recipes[reci].ingredients[inc].ingredient.toLowerCase()
-                console.log(filteresIngredients.includes(currentIng))
-                if(!filteresIngredients.includes(currentIng)) {
+            for (const inc in input[reci].ingredients) {
+                const currentIng = recipes[reci].ingredients[inc].ingredient.toLowerCase()
+                if(!ingredientNames.includes(currentIng)) {
                     isValid = false
                     break;
                 }
             }
-            console.log("CONCLUSION: "+ isValid)
             if(isValid){
-                newList.push(recipes[reci]._id)//only ID
-                newList2.push(recipes[reci])// recipe object
+                filteredRecipeIDs.push(input[reci]._id)
             }
         }
-        console.log(newList)
-        //const sortedRecipes = [].concat(recipes).filter(a => newList.includes(a._id))
-        //sortedRecipes.filter(a => newList.includes(a._id))
-        //console.log(sortedRecipes)
-        //setRecipes([].concat(recipes).filter(a => newList.includes(a._id)))
+        return input.filter(e => filteredRecipeIDs.includes(e._id))
+    }
 
-        const sortedRecipes = recipes.slice().filter(a => newList.includes(a._id))
-        console.log("sortedRecipes")
-        console.log(sortedRecipes)
+    function applyFilter(input) {
 
+        let filteredInput = input;
 
-        setRecipes([...sortedRecipes])
-        console.log(recipes)
-        setIsLoading(false);
+        if(parseInt(filterSelection) === 2){
+            filteredInput = cookableRecipes(filteredInput)
+        }
+        //please insert here filter extensions
+
+        if (search){
+            filteredInput =  searchRecipes(filteredInput)
+        }
+
+        return filteredInput
     }
 
     return (
@@ -130,7 +119,7 @@ export default function Recipes() {
                 </span>
             </div>
             <div style={{textAlign: "right", padding: "1rem"}}>
-                <Filter label="Filter" onApply={applyFilter}>
+                <Filter label="Filter">
                     I want recepies:<br/>
                     {
                         Object.entries(inventoryFilter).map(([key, value]) => {
@@ -140,7 +129,7 @@ export default function Recipes() {
                                     {
                                         <input type="radio" id={key} value={value}
                                                checked={isSelected} onChange={() => {
-                                            handleSelect(key)
+                                            setFilterSelection(key)
                                         }}/>
                                     }
                                     {value}
@@ -169,7 +158,7 @@ export default function Recipes() {
             </div>
             {isLoading ? <div>Loading</div> : <>
                 <div>
-                    <RecipeOverview recipes={searchRecipes(recipes)}/>
+                    <RecipeOverview recipes={applyFilter(recipes)}/>
                 </div>
             </>}
         </>
