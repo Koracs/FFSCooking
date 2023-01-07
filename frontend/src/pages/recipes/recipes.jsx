@@ -5,12 +5,12 @@ import Filter from "../../components/filter";
 
 export default function Recipes() {
     const [recipes, setRecipes] = useState([]);
+    const [cookableRecipes, setCookableRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [sortOrder, setSortOrder] = useState("oldest")
     const [search, setSearch] = useState("");
-    const [filterSelection, setFilterSelection] = useState(1);
-    const inventoryFilter = {1: "all, I don't care", 2: "for which i have goods"};
-    const categories = ["vegan", "I don't care"]
+    const [cookable, setCookable] = useState(false);
+
 
     async function getRecipes() {
         setIsLoading(true);
@@ -27,14 +27,13 @@ export default function Recipes() {
     }
 
     useEffect(() => {
-            getRecipes();
-        }, [recipes.length]
-    );
+        getRecipes();
+        getCookable();
+    }, [recipes.length]);
 
     useEffect(() => {
         sortRecipes(sortOrder);
     }, [sortOrder])
-
 
 
     function sortRecipes(sort) {
@@ -55,21 +54,14 @@ export default function Recipes() {
     }
 
     function searchRecipes(recipes) {
-        return recipes.filter((recipe) => recipe.name.toLowerCase().includes(search))
+        if (cookable) {
+            return cookableRecipes.filter((recipe) => recipe.name.toLowerCase().includes(search))
+        } else {
+            return recipes.filter((recipe) => recipe.name.toLowerCase().includes(search))
+        }
     }
 
-    const handleSelect = selection => {
-        console.log("selection: " + selection)
-
-        setFilterSelection(selection);
-    };
-
-
-    async function applyFilter() {
-        console.log(filterSelection)
-
-        if(parseInt(filterSelection) !== 2) return
-        setIsLoading(true);
+    async function getCookable() {
         const response = await fetch(`http://localhost:5000/api/inventory?filter=onStock`)
 
         if (!response.ok) {
@@ -79,45 +71,27 @@ export default function Recipes() {
         }
 
         const ingredients = await response.json();
-        const filteresIngredients = Object.entries(ingredients).map(([key, value]) => {
+        const filteredIngredients = Object.entries(ingredients).map(([key, value]) => {
             return value.ingredient.toLowerCase()
         })
-        console.log(filteresIngredients)
 
         let newList = []
-        let newList2 = []
 
         for (const reci in recipes) {
             let isValid = true
-            console.log("NEW recipe")
             for (const inc in recipes[reci].ingredients) {
                 let currentIng = recipes[reci].ingredients[inc].ingredient.toLowerCase()
-                console.log(filteresIngredients.includes(currentIng))
-                if(!filteresIngredients.includes(currentIng)) {
+                if (!filteredIngredients.includes(currentIng)) {
                     isValid = false
                     break;
                 }
             }
-            console.log("CONCLUSION: "+ isValid)
-            if(isValid){
-                newList.push(recipes[reci]._id)//only ID
-                newList2.push(recipes[reci])// recipe object
+            if (isValid) {
+                newList.push(recipes[reci])
             }
         }
-        console.log(newList)
-        //const sortedRecipes = [].concat(recipes).filter(a => newList.includes(a._id))
-        //sortedRecipes.filter(a => newList.includes(a._id))
-        //console.log(sortedRecipes)
-        //setRecipes([].concat(recipes).filter(a => newList.includes(a._id)))
 
-        const sortedRecipes = recipes.slice().filter(a => newList.includes(a._id))
-        console.log("sortedRecipes")
-        console.log(sortedRecipes)
-
-
-        setRecipes([...sortedRecipes])
-        console.log(recipes)
-        setIsLoading(false);
+        setCookableRecipes(newList)
     }
 
     return (
@@ -130,27 +104,9 @@ export default function Recipes() {
                 </span>
             </div>
             <div style={{textAlign: "right", padding: "1rem"}}>
-                <Filter label="Filter" onApply={applyFilter}>
-                    I want recepies:<br/>
-                    {
-                        Object.entries(inventoryFilter).map(([key, value]) => {
-                            const isSelected = parseInt(filterSelection) === parseInt(key);
-                            return (
-                                <div key={key}>
-                                    {
-                                        <input type="radio" id={key} value={value}
-                                               checked={isSelected} onChange={() => {
-                                            handleSelect(key)
-                                        }}/>
-                                    }
-                                    {value}
-                                </div>
-                            );
-                        })
-                    }
-                </Filter>
-
-                <label>Search: </label>
+                <label>Only show Cookable Recipes: </label>
+                <input type="checkbox" id="cookable" name="cookable" onChange={(e) => setCookable(e.target.checked)}/>
+                <label style={{paddingLeft: "2rem"}}>Search: </label>
                 <input
                     id="search"
                     name="search"
