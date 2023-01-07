@@ -1,7 +1,6 @@
-//https://www.fullstacklabs.co/blog/building-a-responsive-filter-component-on-react
 import React, {useEffect, useRef, useState} from "react";
 
-export default function Filter({ children, onApply, label }) {
+export default function Filter({children, label}) {
     const [isOpen, setIsOpen] = useState(false);
 
     const dropdownRef = useRef(undefined);
@@ -22,21 +21,10 @@ export default function Filter({ children, onApply, label }) {
         };
         document.addEventListener("mousedown", handleClickOutside);
 
-        /* Event cleanup */
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [dropdownRef, buttonRef]);
-
-
-    function handleApply(event) {
-        setIsOpen(false);
-        onApply(event)
-    }
-
-    function handleCancel() {
-        setIsOpen(false);
-    }
 
     return (
         <>
@@ -44,16 +32,19 @@ export default function Filter({ children, onApply, label }) {
                 <button onClick={() => setIsOpen(!isOpen)} className="button filter__button">{label}</button>
                 {
                     isOpen &&
-                    <div ref={dropdownRef} className="filter__dropdown">
-                        <div style={{paddingtop: "3rem", paddingbottom: "3rem", textAlign: "left"}}>
-                            {children}
-                        </div>
+                    <form>
+                        <div ref={dropdownRef} className="filter__dropdown">
+                            <div style={{paddingtop: "3rem", paddingbottom: "3rem", textAlign: "left"}}>
+                                {children}
+                            </div>
 
-                        <div className="filter__dropdown__actions">
-                            <button onClick={handleCancel} className="filter__dropdown__actions_cancel">Cancel</button>
-                            <button onClick={handleApply} className="filter__dropdown__actions_apply">Apply</button>
+                            <div className="filter__dropdown__actions">
+                                <button onClick={() => setIsOpen(false)}
+                                        className="filter__dropdown__actions_apply">close
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 }
             </div>
         </>
