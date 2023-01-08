@@ -2,6 +2,7 @@ import RecipeOverview from "./recipeOverview";
 import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import Filter from "../../components/filter";
+import {errorPage} from "../error";
 
 export default function Recipes() {
     const [recipes, setRecipes] = useState([]);
@@ -9,38 +10,47 @@ export default function Recipes() {
     const [isLoading, setIsLoading] = useState(true);
     const [sortOrder, setSortOrder] = useState("oldest")
     const [search, setSearch] = useState("");
-
+    const [error, setError] = useState({})
     const [filterSelection, setFilterSelection] = useState(1);
-
     const inventoryFilter = {1: "all, I don't care", 2: "for which i have goods"};
-    const categories = ["vegan", "I don't care"]
 
     async function getRecipes() {
         setIsLoading(true);
-        const response = await fetch(`http://localhost:5000/api/recipes`);
 
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`;
-            window.alert(message);
-            return;
+        try {
+            const response = await fetch(`http://localhost:5000/api/recipes`);
+
+            if(!response.ok){
+                throw Error("Recipes: " + response.status + " " + response.statusText);
+            }
+
+            const recipes = await response.json();
+            console.log(error)
+            setRecipes(recipes);
+            setIsLoading(false);
+
+        } catch (e) {
+            setIsLoading(false);
+            setError({statustext: e.message, message: "Please contact your admin!"})
         }
-        const recipes = await response.json();
-        setRecipes(recipes);
-        setIsLoading(false);
+
     }
 
     async function getAvailableIngredients() {
-        const response = await fetch(`http://localhost:5000/api/inventory?filter=onStock`)
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`
-            window.alert(message)
-            return
+        try {
+            const response = await fetch(`http://localhost:5000/api/inventory?filter=onStock`)
+
+            if(!response.ok){
+                throw Error("Available Ingredients: " + response.status + " " + response.statusText);
+            }
+
+            const result = await response.json();
+            setAvailableIngredients(result)
+        } catch (e) {
+            setIsLoading(false);
+            setError({statustext: e.message, message: `Please contact your admin!`})
         }
-
-        const result = await response.json();
-        setAvailableIngredients(result)
     }
-
 
     useEffect(() => {
             getRecipes();
@@ -81,12 +91,12 @@ export default function Recipes() {
             let isValid = true
             for (const inc in input[reci].ingredients) {
                 const currentIng = recipes[reci].ingredients[inc].ingredient.toLowerCase()
-                if(!ingredientNames.includes(currentIng)) {
+                if (!ingredientNames.includes(currentIng)) {
                     isValid = false
                     break;
                 }
             }
-            if(isValid){
+            if (isValid) {
                 filteredRecipeIDs.push(input[reci]._id)
             }
         }
@@ -97,13 +107,13 @@ export default function Recipes() {
 
         let filteredInput = input;
 
-        if(parseInt(filterSelection) === 2){
+        if (parseInt(filterSelection) === 2) {
             filteredInput = cookableRecipes(filteredInput)
         }
         //please insert here filter extensions
 
-        if (search){
-            filteredInput =  searchRecipes(filteredInput)
+        if (search) {
+            filteredInput = searchRecipes(filteredInput)
         }
 
         return filteredInput
@@ -156,11 +166,10 @@ export default function Recipes() {
                     <option value="alphabetically">A - Z</option>
                 </select>
             </div>
-            {isLoading ? <div>Loading</div> : <>
+            {Object.keys(error).length > 0 ? errorPage(error) : isLoading ? <div>Loading</div> :
                 <div>
                     <RecipeOverview recipes={applyFilter(recipes)}/>
-                </div>
-            </>}
+                </div>}
         </>
     )
 }

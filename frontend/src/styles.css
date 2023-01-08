@@ -187,3 +187,14 @@ body {
     position: absolute;
     left: 5%;
 }
+
+.alert {
+    position: relative;
+    border-style: solid;
+    padding: 1rem;
+    width: 25%;
+    margin-bottom: 2rem;
+    background: #f8f2f2;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
