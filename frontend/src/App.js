@@ -25,7 +25,6 @@ function App() {
                       <Route path="edit/:id" element = {<EditRecipe />}/>
                   </Route>
                   <Route path="/inventory" element = {<Inventory/>}/>
-                  <Route path="/inventory/edit" element={<EditInventory/>}/>
                   <Route path="*" element = {<Home/>}/>
               </Routes>
           </div>

@@ -11,7 +11,7 @@ export default function ViewInventory({ingredients,invertStateHandler}) {
 
     return (
         <div>
-            <ul className="overview">
+            <ul className="InventoryOverview">
                 {ingredients.map((ingredient) => <li key={ingredient._id}>
                     {
                         <button className={"ingredientButton"}

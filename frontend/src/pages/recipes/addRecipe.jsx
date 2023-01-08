@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function AddRecipe() {
     const [formData, setFormData] = useState({
@@ -54,75 +54,72 @@ export default function AddRecipe() {
     }
 
 
-
     return (
-        <div>
-            <h1>Create new Recipe</h1>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="name">Name: </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={name}
-                        placeholder="Enter a recipe name"
-                        onChange={onChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="description">Description: </label>
-                    <input
-                        type="text"
-                        id="description"
-                        name="description"
-                        value={description}
-                        placeholder="Enter a description"
-                        onChange={onChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="ingredients">Ingredients: </label>
-                    {formData.ingredients.map((ingredient, index) =>
+        <>
+            <div style={{display: "flex", justifyContent: "space-around", alignItems: "center"}}>
+                <span style={{width: "25%"}}></span>
+                <h1 style={{width: "50%", textAlign: "center"}}>Create new Recipe</h1>
+                <span style={{width: "25%", textAlign: "right"}}>
+                    <Link to={`/recipes`} className="button"> Go Back </Link>
+                </span>
+            </div>
+            <div className="recipeView">
+                <form onSubmit={onSubmit}>
+                    <div style={{alignItems:"center"}}>
+                        <h2 style={{display:"inline-block",paddingRight:"1rem",alignItems:"center"}}>Name</h2>
                         <input
-                            key={index}
+                            style={{fontSize:"1.25rem"}}
                             type="text"
-                            id="ingredients"
-                            name="ingredients"
-                            value={ingredient.ingredient}
-                            placeholder="Ingredient"
-                            onChange={onIngredientChange(index)}
+                            id="name"
+                            name="name"
+                            value={name}
+                            placeholder="Enter a recipe name"
+                            onChange={onChange}
                         />
-                    )}
+                    </div>
+                    <div className="recipeIngredients">
+                       <h2>Ingredients</h2>
+                        {formData.ingredients.map((ingredient, index) =>
+                            <input
+                                key={index}
+                                type="text"
+                                id="ingredients"
+                                name="ingredients"
+                                value={ingredient.ingredient}
+                                placeholder="Ingredient"
+                                onChange={onIngredientChange(index)}
+                            />
+                        )}
+                    </div>
+                    <div className="recipeDescription">
+                        <h2>Description</h2>
+                        <textarea
+                            type="text"
+                            id="description"
+                            name="description"
+                            value={description}
+                            placeholder="Enter a description"
+                            style={{height:"15rem",width:"70%"}}
+                            onChange={onChange}
+                        />
+                    </div>
+
+                    <div className="recipeDescription">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+                <div className="recipeIngredients">
+                <button onClick={() => {
+                    setFormData({
+                        name: formData.name,
+                        description: formData.description,
+                        ingredients: formData.ingredients.concat({ingredient: ""})
+                    })
+                }}>Add Ingredient
+                </button>
                 </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-            <button onClick={() => {
-                setFormData({
-                    name: formData.name,
-                    description: formData.description,
-                    ingredients: formData.ingredients.concat({ingredient: ""})
-                })
-            }}>Add Ingredient
-            </button>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-        </div>
+                <div className="recipeDescription"></div>
+            </div>
+        </>
     )
 }

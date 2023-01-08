@@ -1,11 +1,13 @@
 import InventoryOverview from "./viewInventory";
 import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
+import EditInventory from "./editInventory";
 
 
 export default function Inventory() {
     const [ingredients, setIngredients] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [editMode,setEditMode] = useState(false);
     const [sortOrder, setSortOrder] = useState("oldest")
     const [formData, setFormData] = useState({
         ingredient: "",
@@ -32,6 +34,22 @@ export default function Inventory() {
         const ingredients = await response.json();
         setIngredients(ingredients)
         setIsLoading(false);
+    }
+
+    async function onDelete(ingredient) {
+        if (window.confirm("Delete Ingredient?")) {
+
+            await fetch(`http://localhost:5000/api/inventory/${ingredient._id}`, {
+                method: "DELETE",
+            }).catch(error => {
+                window.alert(error);
+                return;
+            });
+
+            const newResponse = await fetch(`http://localhost:5000/api/inventory`)
+            const newIngredients = await newResponse.json();
+            setIngredients(newIngredients)
+        }
     }
 
     useEffect(() => {
@@ -96,7 +114,7 @@ export default function Inventory() {
                     <span style={{width: "15%"}}></span>
                     <h1 style={{width: "70%", textAlign: "center"}}>My Inventory</h1>
                     <span style={{width: "15%", textAlign: "right"}}>
-                    <Link to={`/inventory/edit`} className="button"> Edit Inventory </Link>
+                    <button onClick={() => setEditMode(!editMode)} className="button">{editMode? "Go Back" : "Edit Inventory"}</button>
                 </span>
                 </div>
                 <div style={{textAlign: "right", padding: "1rem"}}>
@@ -119,9 +137,8 @@ export default function Inventory() {
                     </select>
                 </div>
             {isLoading ? <div>Loading</div> : <>
-                <div>
-                    <InventoryOverview ingredients={ingredients} invertStateHandler={invertState}/>
-                </div>
+                {editMode? <EditInventory ingredients={ingredients} deleteHandler={onDelete}/>
+                    : <InventoryOverview ingredients={ingredients} invertStateHandler={invertState}/>}
             </>}
         </>
     )
