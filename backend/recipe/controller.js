@@ -13,7 +13,7 @@ const getRecipe = asyncHandler(async (req, res) => {
     const recipe = await Recipe.findById(req.params.id)
 
     if (!recipe) {
-        res.status(400)
+        res.status(404)
         throw new Error('Recipe not found')
     }
 
@@ -49,7 +49,7 @@ const updateRecipe = asyncHandler(async (req, res) => {
     const recipe = await Recipe.findById(req.params.id)
 
     if (!recipe) {
-        res.status(400)
+        res.status(404)
         throw new Error('Recipe not found')
     }
 
@@ -65,7 +65,7 @@ const deleteRecipe = asyncHandler(async (req, res) => {
     const recipe = await Recipe.findById(req.params.id)
 
     if (!recipe) {
-        res.status(400)
+        res.status(404)
         throw new Error('Recipe not found')
     }
 
