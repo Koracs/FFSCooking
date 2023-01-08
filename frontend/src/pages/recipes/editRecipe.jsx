@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 export default function EditRecipe() {
     const [formData, setFormData] = useState({
@@ -10,11 +10,11 @@ export default function EditRecipe() {
         }]
     });
 
-    const { name, description, ingredients } = formData
+    const {name, description, ingredients} = formData
     const params = useParams();
     const navigate = useNavigate();
 
-    useEffect(() =>{
+    useEffect(() => {
         async function fetchData() {
             const id = params.id.toString();
             const response = await fetch(`http://localhost:5000/api/recipes/${id}`);
@@ -81,74 +81,86 @@ export default function EditRecipe() {
 
     async function deleteRecipe(e) {
         e.preventDefault();
-        if(window.confirm("Delete Recipe?")){
+        if (window.confirm("Delete Recipe?")) {
             await fetch(`http://localhost:5000/api/recipes/${params.id}`, {
                 method: "DELETE"
-            }).catch(error => { //todo: error message not showing
+            }).catch(error => {
                 window.alert(error);
                 return;
             });
-            //todo: no confirmation showing
 
             navigate(`/recipes`)
         }
     }
-//todo recipe form component for edit and view component
-    return(
-        <div>
-            <h1>Edit Recipe</h1>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label htmlFor="name">Name: </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={name}
-                        placeholder="Enter a recipe name"
-                        onChange={onChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="description">Description: </label>
-                    <input
-                        type="text"
-                        id="description"
-                        name="description"
-                        value={description}
-                        placeholder="Enter a description"
-                        onChange={onChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="ingredients">Ingredients: </label>
-                    {formData.ingredients.map((ingredient, index) =>
-                        <input
-                            key={index}
-                            type="text"
-                            id="ingredients"
-                            name="ingredients"
-                            value={ingredient.ingredient}
-                            placeholder="Ingredient"
-                            onChange={onIngredientChange(index)}
-                        />
-                    )}
-                </div>
-                <div>
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-            <button onClick={() => {
-                setFormData({
-                    name: formData.name,
-                    description: formData.description,
-                    ingredients: formData.ingredients.concat({ingredient: ""})
-                })
-            }}>Add Ingredient
-            </button>
-            <div>
-                <button onClick={deleteRecipe}>Delete Recipe</button>
+
+//todo?? recipe form component for edit and view component (callback functions)
+    return (
+        <>
+            <div style={{display: "flex", justifyContent: "space-around", alignItems: "center"}}>
+                <span style={{width: "25%"}}></span>
+                <h1 style={{width: "50%", textAlign: "center"}}>Edit Recipe</h1>
+                <span style={{width: "25%", textAlign: "right"}}>
+                    <Link to={`/recipes`} className="button"> Go Back </Link>
+                </span>
             </div>
-        </div>
+            <div className="recipeView">
+                <form onSubmit={onSubmit}>
+                    <div style={{alignItems: "center"}}>
+                        <h2 style={{display: "inline-block", paddingRight: "1rem", alignItems: "center"}}>Name</h2>
+                        <input
+                            style={{fontSize:"1.25rem"}}
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={name}
+                            placeholder="Enter a recipe name"
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className="recipeIngredients">
+                        <h2>Ingredients</h2>
+                        {formData.ingredients.map((ingredient, index) =>
+                            <input
+                                key={index}
+                                type="text"
+                                id="ingredients"
+                                name="ingredients"
+                                value={ingredient.ingredient}
+                                placeholder="Ingredient"
+                                onChange={onIngredientChange(index)}
+                            />
+                        )}
+                    </div>
+                    <div className="recipeDescription">
+                        <h2>Description</h2>
+                        <textarea
+                            type="text"
+                            id="description"
+                            name="description"
+                            value={description}
+                            placeholder="Enter a description"
+                            style={{height: "15rem", width: "70%"}}
+                            onChange={onChange}
+                        />
+                    </div>
+                    <div className="recipeDescription">
+                        <button type="submit">Submit</button>
+                        <br/>
+                        <button onClick={deleteRecipe}>Delete Recipe</button>
+                    </div>
+                </form>
+                <div className="recipeIngredients">
+                    <button onClick={() => {
+                        setFormData({
+                            name: formData.name,
+                            description: formData.description,
+                            ingredients: formData.ingredients.concat({ingredient: ""})
+                        })
+                    }}>Add Ingredient
+                    </button>
+                </div>
+                <div className="recipeDescription"></div>
+            </div>
+        </>
     )
 }

@@ -7,51 +7,60 @@ export default function ViewRecipe() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        async function fetchData() {
-            const id = params.id.toString();
-            const response = await fetch(`http://localhost:5000/api/recipes/${id}`);
+    async function fetchData() {
+        setIsLoading(true)
+        const id = params.id.toString();
+        const response = await fetch(`http://localhost:5000/api/recipes/${id}`);
 
-            if (!response.ok) {
-                const message = `An error has occured: ${response.statusText}`;
-                window.alert(message);
-                return;
-            }
-
-            const recipe = await response.json();
-            if (!recipe) {
-                window.alert(`Recipe with id ${id} not found`);
-                navigate("/");
-                return;
-            }
-
-            setRecipe(recipe);
-            setIsLoading(false);
+        if (!response.ok) {
+            const message = `An error has occured: ${response.statusText}`;
+            window.alert(message);
+            return;
         }
 
-        fetchData();
+        const recipe = await response.json();
+        if (!recipe) {
+            window.alert(`Recipe with id ${id} not found`);
+            navigate("/");
+            return;
+        }
+        setRecipe(recipe);
+        setIsLoading(false);
+    }
 
-        return;
+    useEffect(() => {
+        fetchData();
     }, [params.id, navigate]);
-    //todo loading spinner / content loader
+
+
     return (
         <>
-
             <div style={{display: "flex", justifyContent: "space-around", alignItems: "center"}}>
-                <span style={{width: "15%"}}></span>
-                <h1 style={{width: "70%", textAlign: "center"}}>{recipe.name}</h1>
-                <span style={{width: "15%", textAlign: "right"}}>
+                <span style={{width: "25%"}}></span>
+                <h1 style={{width: "50%", textAlign: "center"}}>{recipe.name}</h1>
+                <span style={{width: "25%", textAlign: "right"}}>
                     <Link to={`/recipes/edit/${recipe._id}`} className="button"> Edit Recipe </Link>
                     <span> </span>
                     <Link to={`/recipes`} className="button"> Go Back </Link>
                 </span>
             </div>
-            <p>{recipe.description}</p>
-            <p>Zutaten:</p>
-            <ul>
-                {!isLoading ? recipe.ingredients.map((ingredient, index) =>
-                    <li key={index}> {ingredient.ingredient} </li>) : null}
-            </ul>
+            {isLoading ? <div>Loading</div> : <>
+            <div className="recipeView">
+                <p>Created: {recipe.createdAt.substring(8,10)+"."+recipe.createdAt.substring(5,7)+"."+recipe.createdAt.substring(0,4)}
+                    <dd/> Last updated: {recipe.updatedAt.substring(8,10)+"."+recipe.updatedAt.substring(5,7)+"."+recipe.updatedAt.substring(0,4)}</p>
+                <div className="recipeIngredients">
+                    <h2>Ingredients</h2>
+                    <ul>
+                        {!isLoading ? recipe.ingredients.map((ingredient, index) =>
+                            <li key={index}> {ingredient.ingredient} </li>) : null}
+                    </ul>
+                </div>
+                <div className="recipeDescription">
+                    <h2>Description</h2>
+                    <p style={{whiteSpace:"pre-line",textAlign:"left"}}>{recipe.description}</p>
+                </div>
+            </div>
+            </>}
         </>
     );
 }
