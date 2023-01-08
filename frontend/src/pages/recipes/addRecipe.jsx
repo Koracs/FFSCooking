@@ -11,6 +11,7 @@ export default function AddRecipe() {
     });
 
     const {name, description, ingredients} = formData
+    const [error, setError] = useState({})
     const navigate = useNavigate();
 
     const onChange = (e) => {
@@ -36,21 +37,29 @@ export default function AddRecipe() {
 
         const newRecipe = {...formData};
 
-        await fetch("http://localhost:5000/api/recipes", { //todo catch response
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newRecipe),
-        }).catch(error => { //todo: error message not showing
-            window.alert(error);
-            return;
-        });
-        //todo: no confirmation showing
-        setFormData({name: "", description: "", ingredients: [{ingredient: ""}]})
-        navigate("/recipes/new") //todo redirect to new recipe link (post response?)
+        try {
+            const response = await fetch("http://localhost:5000/api/recipes", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newRecipe),
+            });
 
-        window.location = '/recipes';
+            console.log(response)
+            if(!response.ok){
+                console.log(response.status)
+                throw Error("new Recipe: " + response.status + " " + response.statusText);
+            }
+
+            window.alert("successfull created"); //ToDo wenn Zeit dann ModalDialog
+            navigate("/recipes")
+
+        } catch (e) {
+            setError({statustext: e.message, message: "Please contact your admin!"});
+            window.alert("Error: "+error["message"]);
+            navigate("/recipes/new")
+        }
     }
 
 
@@ -65,10 +74,10 @@ export default function AddRecipe() {
             </div>
             <div className="recipeView">
                 <form onSubmit={onSubmit}>
-                    <div style={{alignItems:"center"}}>
-                        <h2 style={{display:"inline-block",paddingRight:"1rem",alignItems:"center"}}>Name</h2>
+                    <div style={{alignItems: "center"}}>
+                        <h2 style={{display: "inline-block", paddingRight: "1rem", alignItems: "center"}}>Name</h2>
                         <input
-                            style={{fontSize:"1.25rem"}}
+                            style={{fontSize: "1.25rem"}}
                             type="text"
                             id="name"
                             name="name"
@@ -78,7 +87,7 @@ export default function AddRecipe() {
                         />
                     </div>
                     <div className="recipeIngredients">
-                       <h2>Ingredients</h2>
+                        <h2>Ingredients</h2>
                         {formData.ingredients.map((ingredient, index) =>
                             <input
                                 key={index}
@@ -99,7 +108,7 @@ export default function AddRecipe() {
                             name="description"
                             value={description}
                             placeholder="Enter a description"
-                            style={{height:"15rem",width:"70%"}}
+                            style={{height: "15rem", width: "70%"}}
                             onChange={onChange}
                         />
                     </div>
@@ -109,14 +118,14 @@ export default function AddRecipe() {
                     </div>
                 </form>
                 <div className="recipeIngredients">
-                <button onClick={() => {
-                    setFormData({
-                        name: formData.name,
-                        description: formData.description,
-                        ingredients: formData.ingredients.concat({ingredient: ""})
-                    })
-                }}>Add Ingredient
-                </button>
+                    <button onClick={() => {
+                        setFormData({
+                            name: formData.name,
+                            description: formData.description,
+                            ingredients: formData.ingredients.concat({ingredient: ""})
+                        })
+                    }}>Add Ingredient
+                    </button>
                 </div>
                 <div className="recipeDescription"></div>
             </div>
