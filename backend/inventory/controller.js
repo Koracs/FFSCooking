@@ -4,15 +4,13 @@ const Inventory = require('./model')
 
 const getInventory = asyncHandler(async (req, res) => {
 
-    let inventory = await Inventory.find()
+    let inventory;
 
-    if (req.query.filter  === 'onStock') {
+    if (req.query.filter ==='onStock') {
         inventory = await Inventory.find({state:true})
     } else {
         inventory = await Inventory.find()
     }
-
-
 
     if (!inventory) {
         res.status(400)
@@ -27,7 +25,7 @@ const getIngredient = asyncHandler(async (req, res) => {
     const ingredient = await Inventory.findById(req.params.id)
 
     if (!ingredient) {
-        res.status(400)
+        res.status(404)
         throw new Error('Ingredient not found')
     }
 
@@ -58,7 +56,7 @@ const updateIngredient = asyncHandler(async (req, res) => {
     const ingredient = await Inventory.findById(req.params.id)
 
     if (!ingredient) {
-        res.status(400)
+        res.status(404)
         throw new Error('Ingredient not found')
     }
 
@@ -75,7 +73,7 @@ const invertIngredientStatus = asyncHandler(async (req, res) => {
     const ingredient = await Inventory.findById(req.params.id)
 
     if (!ingredient) {
-        res.status(400)
+        res.status(404)
         throw new Error('Ingredient not found')
     }
 
@@ -93,7 +91,7 @@ const deleteIngredient = asyncHandler(async (req, res) => {
     const ingredient = await Inventory.findById(req.params.id)
 
     if (!ingredient) {
-        res.status(400)
+        res.status(404)
         throw new Error('Recipe not found')
     }
 
