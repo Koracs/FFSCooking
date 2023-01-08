@@ -11,7 +11,6 @@ export default function AddRecipe() {
     });
 
     const {name, description, ingredients} = formData
-    const [error, setError] = useState({})
     const navigate = useNavigate();
 
     const onChange = (e) => {
@@ -48,16 +47,14 @@ export default function AddRecipe() {
 
             console.log(response)
             if(!response.ok){
-                console.log(response.status)
                 throw Error("new Recipe: " + response.status + " " + response.statusText);
             }
 
-            window.alert("successfull created"); //ToDo wenn Zeit dann ModalDialog
+            window.alert("successfully created"); //ToDo wenn Zeit dann ModalDialog
             navigate("/recipes")
 
         } catch (e) {
-            setError({statustext: e.message, message: "Please contact your admin!"});
-            window.alert("Error: "+error["message"]);
+            window.alert("Error: "+e.message);
             navigate("/recipes/new")
         }
     }

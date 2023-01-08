@@ -13,32 +13,30 @@ export default function EditRecipe() {
     const {name, description, ingredients} = formData
     const params = useParams();
     const navigate = useNavigate();
+    const [error, setError] = useState({})
 
     useEffect(() => {
-        async function fetchData() {
-            const id = params.id.toString();
+        fetchData();
+
+    }, [params.id]);
+
+    async function fetchData() {
+        const id = params.id.toString();
+        try {
             const response = await fetch(`http://localhost:5000/api/recipes/${id}`);
 
-            if (!response.ok) {
-                const message = `An error has occured: ${response.statusText}`;
-                window.alert(message);
-                return;
+            if(!response.ok){
+                throw Error("fetch Recipes: " + response.status + " " + response.statusText);
             }
 
             const recipe = await response.json();
-            if (!recipe) {
-                window.alert(`Recipe with id ${id} not found`);
-                navigate("/");
-                return;
-            }
-
             setFormData(recipe);
         }
-
-        fetchData();
-
-        return;
-    }, [params.id, navigate]);
+        catch (e){
+            window.alert("Error: " + e.message);
+            navigate(`/recipes/${id}`)
+        }
+    }
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -64,32 +62,47 @@ export default function EditRecipe() {
 
         const newRecipe = {...formData};
 
-        await fetch(`http://localhost:5000/api/recipes/${params.id}`, {
-            method: "PUT",
-            body: JSON.stringify(newRecipe),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).catch(error => { //todo: error message not showing
-            window.alert(error);
-            return;
-        });
-        //todo: no confirmation showing
+        try {
+            const response = await fetch(`http://localhost:5000/api/recipes/${params.id}`, {
+                method: "PUT",
+                body: JSON.stringify(newRecipe),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
 
-        navigate(`/recipes/${params.id}`)
+            if(!response.ok){
+                throw Error("edit Recipe: " + response.status + " " + response.statusText);
+            }
+
+            window.alert("successfully updated"); //ToDo wenn Zeit dann ModalDialog
+            navigate(`/recipes/${params.id}`)
+
+        } catch (e) {
+            window.alert("Error: "+e.message);
+            navigate(`/recipes/edit/${params.id}`)
+        }
     }
 
     async function deleteRecipe(e) {
         e.preventDefault();
         if (window.confirm("Delete Recipe?")) {
-            await fetch(`http://localhost:5000/api/recipes/${params.id}`, {
-                method: "DELETE"
-            }).catch(error => {
-                window.alert(error);
-                return;
-            });
 
-            navigate(`/recipes`)
+            try {
+                const response = await fetch(`http://localhost:5000/api/recipes/${params.id}`, {
+                    method: "DELETE"
+                });
+
+                if(!response.ok){
+                    throw Error("edit Recipe: " + response.status + " " + response.statusText);
+                }
+
+                window.alert("successfully deleted"); //ToDo wenn Zeit dann ModalDialog
+                navigate(`/recipes`)
+            } catch (e) {
+                window.alert("Error: "+e.message);
+                navigate(`/recipes/edit/${params.id}`)
+            }
         }
     }
 
