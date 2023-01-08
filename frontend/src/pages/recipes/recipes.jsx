@@ -25,7 +25,6 @@ export default function Recipes() {
             }
 
             const recipes = await response.json();
-            console.log(error)
             setRecipes(recipes);
             setIsLoading(false);
 
