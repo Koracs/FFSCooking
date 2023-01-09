@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import Filter from "../../components/filter";
 import {errorPage} from "../error";
+import Modal from "../../components/modal";
 
 export default function Recipes() {
     const [recipes, setRecipes] = useState([]);

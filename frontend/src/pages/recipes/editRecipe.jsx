@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
+import Modal from "../../components/modal";
 
 export default function EditRecipe() {
     const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ export default function EditRecipe() {
     const {name, description, ingredients} = formData
     const params = useParams();
     const navigate = useNavigate();
-    const [error, setError] = useState({})
+    const [modal, setModal] = useState({show:false, title: "", body: "", footer:""})
 
     useEffect(() => {
         fetchData();
@@ -75,6 +76,8 @@ export default function EditRecipe() {
                 throw Error("edit Recipe: " + response.status + " " + response.statusText);
             }
 
+            //setModal({show:true, title: "Edit Recipe", body: "successfully updated", footer: ""})
+            //console.log(modal)
             window.alert("successfully updated"); //ToDo wenn Zeit dann ModalDialog
             navigate(`/recipes/${params.id}`)
 
@@ -109,6 +112,10 @@ export default function EditRecipe() {
 //todo?? recipe form component for edit and view component (callback functions)
     return (
         <>
+            <Modal show={modal["show"]} label="myModal" footer={"this is a footer"}>
+                this is child
+            </Modal>
+
             <div style={{display: "flex", justifyContent: "space-around", alignItems: "center"}}>
                 <span style={{width: "25%"}}></span>
                 <h1 style={{width: "50%", textAlign: "center"}}>Edit Recipe</h1>
