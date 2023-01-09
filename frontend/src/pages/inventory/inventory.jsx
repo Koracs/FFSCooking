@@ -1,7 +1,8 @@
 import InventoryOverview from "./viewInventory";
-import {Link} from "react-router-dom";
+import {useNavigate, useNavigation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import EditInventory from "./editInventory";
+import {errorPage} from "../error";
 
 
 export default function Inventory() {
@@ -9,10 +10,12 @@ export default function Inventory() {
     const [isLoading, setIsLoading] = useState(true);
     const [editMode,setEditMode] = useState(false);
     const [sortOrder, setSortOrder] = useState("oldest")
+    const [error, setError] = useState({})
     const [formData, setFormData] = useState({
         ingredient: "",
         state: true
     });
+    const navigate = useNavigate();
     const {ingredient, state} = formData
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -23,32 +26,53 @@ export default function Inventory() {
 
     async function getInventory() {
         setIsLoading(true);
-        const response = await fetch(`http://localhost:5000/api/inventory`)
 
-        if (!response.ok) {
-            const message = `An error occurred: ${response.statusText}`
-            window.alert(message)
-            return
+        try {
+            const response = await fetch(`http://localhost:5000/api/inventory`)
+
+            if(!response.ok){
+                throw Error("get inventory: " + response.status + " " + response.statusText);
+            }
+
+            const ingredients = await response.json();
+            setIngredients(ingredients)
+            setIsLoading(false);
+
+        }catch (e) {
+            console.log(error)
+            setIsLoading(false);
+            setError({statustext: e.message, message: "Please contact your admin!"})
         }
 
-        const ingredients = await response.json();
-        setIngredients(ingredients)
-        setIsLoading(false);
     }
 
     async function onDelete(ingredient) {
         if (window.confirm("Delete Ingredient?")) {
 
-            await fetch(`http://localhost:5000/api/inventory/${ingredient._id}`, {
-                method: "DELETE",
-            }).catch(error => {
-                window.alert(error);
-                return;
-            });
+            try {
+                const response =  await fetch(`http://localhost:5000/api/inventory/${ingredient._id}`, {
+                    method: "DELETE",
+                });
 
-            const newResponse = await fetch(`http://localhost:5000/api/inventory`)
-            const newIngredients = await newResponse.json();
-            setIngredients(newIngredients)
+                if(!response.ok){
+                    throw Error("delete Ingredient: " + response.status + " " + response.statusText);
+                }
+
+                window.alert("successfully deleted!");
+
+                const newResponse = await fetch(`http://localhost:5000/api/inventory`)
+
+                if(!newResponse.ok){
+                    throw Error("get inventory: " + response.status + " " + response.statusText);
+                }
+
+                const newIngredients = await newResponse.json();
+                setIngredients(newIngredients)
+
+            }catch (e) {
+                window.alert("Error: "+e.message);
+            }
+
         }
     }
 
@@ -82,16 +106,22 @@ export default function Inventory() {
         e.preventDefault();
         const newIngredient = {...formData};
 
-        await fetch("http://localhost:5000/api/inventory", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newIngredient),
-        }).catch(error => {
-            window.alert(error);
-            return;
-        });
+        try{
+            const response = await fetch("http://localhost:5000/api/inventory", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(newIngredient),
+                });
+
+            if(!response.ok){
+                throw Error("add Ingredient: " + response.status + " " + response.statusText);
+            }
+        }catch (e) {
+            window.alert("Error: "+e.message);
+        }
+        
         setFormData({ingredient: "", state: true})
 
         getInventory()
@@ -136,7 +166,7 @@ export default function Inventory() {
                         <option value="alphabetically">A - Z</option>
                     </select>
                 </div>
-            {isLoading ? <div>Loading</div> : <>
+            { Object.keys(error).length > 0 ? errorPage(error) : isLoading ? <div>Loading</div> : <>
                 {editMode? <EditInventory ingredients={ingredients} deleteHandler={onDelete}/>
                     : <InventoryOverview ingredients={ingredients} invertStateHandler={invertState}/>}
             </>}

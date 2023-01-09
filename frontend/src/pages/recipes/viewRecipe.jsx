@@ -10,22 +10,23 @@ export default function ViewRecipe() {
     async function fetchData() {
         setIsLoading(true)
         const id = params.id.toString();
-        const response = await fetch(`http://localhost:5000/api/recipes/${id}`);
+        try{
+            const response = await fetch(`http://localhost:5000/api/recipes/${id}`);
 
-        if (!response.ok) {
-            const message = `An error has occured: ${response.statusText}`;
-            window.alert(message);
-            return;
+            if(!response.ok){
+                throw Error("get Recipe: " + response.status + " " + response.statusText);
+            }
+
+            const recipe = await response.json();
+
+            setRecipe(recipe);
+            setIsLoading(false);
+        }catch (e) {
+            window.alert("Error: "+e.message);
+            setIsLoading(false);
+            navigate("/recipes");
         }
 
-        const recipe = await response.json();
-        if (!recipe) {
-            window.alert(`Recipe with id ${id} not found`);
-            navigate("/");
-            return;
-        }
-        setRecipe(recipe);
-        setIsLoading(false);
     }
 
     useEffect(() => {
