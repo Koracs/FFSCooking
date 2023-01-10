@@ -7,9 +7,9 @@ export default function Home() {
     return (
         <>
             <div>
-                <h1 style={{ color: 'black', fontSize: '40px' }}>Deine besten Rezepte an einem Ort</h1>
-                <p style={{ color: 'black', fontSize: '20px' }}>Speichere alle Rezepte an einem Ort und schon kannst du diese jederzeit abrufen.</p>
-                <p style={{ color: 'black', fontSize: '20px' }}>Egal ob am PC, dem iPad, Smartphone und Co. Du brauchst nur einen modernen Browser :) </p>
+                <h1>Deine besten Rezepte an einem Ort</h1>
+                <h2>Speichere alle Rezepte an einem Ort und schon kannst du diese jederzeit abrufen.</h2>
+                <h3 style={{fontSize: '20px' }}>Egal ob am PC, dem iPad, Smartphone und Co. Du brauchst nur einen modernen Browser :) </h3>
 
                 <h3>Das sind wir:</h3>
 
