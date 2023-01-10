@@ -8,6 +8,8 @@
     --button-color: #27343d;
     --button-green: #2aca71;
     --button-red: #ef696e;
+
+    --transition: 300ms ease-in-out;
 }
 * {
     box-sizing: border-box;
@@ -99,7 +101,7 @@ body {
     outline: inherit;
     font-weight: bold;
     border-radius: 0.2rem;
-    transition: 300ms ease-in-out;
+    transition: var(--transition);
 }
 
 .button:hover{
@@ -130,7 +132,7 @@ body {
     font-size: 1.5rem;
     padding: 1.5rem 1rem;
     font-weight: bold;
-    transition: 300ms ease-in-out;
+    transition: var(--transition);
 
 }
 
@@ -155,7 +157,7 @@ body {
     border-radius: 0.2rem;
     font-size: 1.5rem;
     font-weight: bold;
-    transition: 300ms ease-in-out;
+    transition: var(--transition);
 }
 
 .recipeButton:hover{
@@ -176,16 +178,14 @@ body {
     display: inline-block;
     text-align: right;
     text-decoration: none;
-    color: black;
-    background: gray;
+    background: var(--button-color);
     border: none;
     padding: 1rem;
-    border-width: 2rem;
     cursor: pointer;
     font-weight: bold;
     font-size: 1.5rem;
     border-radius: 0.2rem;
-    transition: 300ms ease-in-out;
+    transition: var(--transition);
 }
 
 .ingredientButton:hover{
@@ -227,12 +227,25 @@ body {
 }
 
 select, input, textarea, option {
-    color:black;
+    background-color: var(--button-color);
     border-radius: 0.2rem;
-    border-style: solid;
-    border-color: var(--background-color2);
+    border-style: none;
     margin: 0.25rem;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    transition: var(--transition);
+}
+
+input {
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    Border: none;
+    color: white;
+    Border-bottom: 1.5px solid white;
+}
+
+select:hover{
+    background-color: var(--hover-color);
 }
 
 .filter {
