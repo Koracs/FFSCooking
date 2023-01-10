@@ -99,7 +99,7 @@ body {
     background: #777777;
 }
 
-.RecipeOverview{
+.RecipeOverviewFlex{
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -112,7 +112,9 @@ body {
     gap: 5rem 2rem;
 }
 
-.recipeButton{
+.recipeButtonFlex{
+    flex-grow: 1;
+    flex-basis: 33%;
     text-decoration: none;
     background: gray;
     border-color: #000000;
@@ -127,8 +129,45 @@ body {
 
 }
 
+.RecipeOverview{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    padding: 0;
+    list-style: none;
+    gap: 2rem 2rem;
+}
+
+.recipeButton{
+    height: 120px;
+    text-align: center;
+    background: gray;
+    border-color: #000000;
+    border-style: none;
+    border-width: 0.15rem;
+    border-radius: 0.2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: 300ms ease-in-out;
+}
+
 .recipeButton:hover{
     background: #777777;
+}
+
+.fillDiv{
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .ingredientButton {

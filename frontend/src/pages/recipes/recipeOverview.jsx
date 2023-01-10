@@ -4,12 +4,12 @@ import {Link} from "react-router-dom";
 
 export default function RecipeOverview({recipes}) {
     return (
-        <ul className="RecipeOverview">
-            {recipes.map((recipe) => <li key={recipe._id}>
+        <div className="RecipeOverview">
+            {recipes.map((recipe) => <div key={recipe._id} className="recipeButton">
                 {
-                    <Link className="recipeButton" to={`/recipes/${recipe._id}`}> {recipe.name}</Link>
+                    <Link className="fillDiv" to={`/recipes/${recipe._id}`}> {recipe.name}</Link>
                 }
-            </li>)}
-        </ul>
+            </div>)}
+        </div>
     );
 }
