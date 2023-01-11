@@ -26,7 +26,7 @@ body {
 }
 
 .container {
-    margin: 1rem;
+    margin: 1rem 1rem 3rem;
     text-align: center;
 }
 
@@ -214,7 +214,6 @@ body {
 .recipeIngredients{
     float:left;
     width: 30%;
-
 }
 
 .recipeIngredients ul{
@@ -223,7 +222,7 @@ body {
 
 .recipeDescription{
     float:right;
-    width: 70%
+    width: 70%;
 }
 
 select, input, textarea, option {
