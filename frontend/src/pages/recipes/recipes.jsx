@@ -2,7 +2,7 @@ import RecipeOverview from "./recipeOverview";
 import {Link} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import Filter from "../../components/filter";
-import {errorPage} from "../error";
+import {errorPage} from "../../components/error";
 
 export default function Recipes() {
     const [recipes, setRecipes] = useState([]);

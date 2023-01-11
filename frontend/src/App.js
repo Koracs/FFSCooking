@@ -9,7 +9,6 @@ import Inventory from "./pages/inventory/inventory";
 import ViewRecipe from "./pages/recipes/viewRecipe";
 import AddRecipe from "./pages/recipes/addRecipe";
 import EditRecipe from "./pages/recipes/editRecipe";
-import EditInventory from "./pages/inventory/editInventory";
 
 function App() {
   return (

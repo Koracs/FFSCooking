@@ -2,7 +2,7 @@ import InventoryOverview from "./viewInventory";
 import {useNavigate, useNavigation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import EditInventory from "./editInventory";
-import {errorPage} from "../error";
+import {errorPage} from "../../components/error";
 
 
 export default function Inventory() {
