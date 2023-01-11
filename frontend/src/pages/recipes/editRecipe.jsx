@@ -75,7 +75,7 @@ export default function EditRecipe() {
                 throw Error("edit Recipe: " + response.status + " " + response.statusText);
             }
 
-            window.alert("successfully updated"); //ToDo wenn Zeit dann ModalDialog
+            //window.alert("successfully updated"); //ToDo wenn Zeit dann ModalDialog
             navigate(`/recipes/${params.id}`)
 
         } catch (e) {
@@ -97,7 +97,7 @@ export default function EditRecipe() {
                     throw Error("edit Recipe: " + response.status + " " + response.statusText);
                 }
 
-                window.alert("successfully deleted"); //ToDo wenn Zeit dann ModalDialog
+                //window.alert("successfully deleted"); //ToDo wenn Zeit dann ModalDialog
                 navigate(`/recipes`)
             } catch (e) {
                 window.alert("Error: "+e.message);
@@ -106,7 +106,7 @@ export default function EditRecipe() {
         }
     }
 
-//todo?? recipe form component for edit and view component (callback functions)
+//todo? recipe form component for edit and view component (callback functions)
     return (
         <>
             <div style={{display: "flex", justifyContent: "space-around", alignItems: "center"}}>

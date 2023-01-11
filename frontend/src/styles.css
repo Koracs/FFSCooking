@@ -26,7 +26,7 @@ body {
 }
 
 .container {
-    margin: 1rem 1rem 3rem;
+    margin: 1rem;
     text-align: center;
 }
 
@@ -137,7 +137,7 @@ body {
 }
 
 .RecipeOverview{
-    width: 100%;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
@@ -225,7 +225,7 @@ body {
     width: 70%;
 }
 
-select, input, textarea, option {
+select, input, textarea, option, button {
     background-color: var(--button-color);
     border-radius: 0.2rem;
     border-style: none;
@@ -244,6 +244,10 @@ input {
 }
 
 select:hover{
+    background-color: var(--hover-color);
+}
+
+button:hover{
     background-color: var(--hover-color);
 }
 

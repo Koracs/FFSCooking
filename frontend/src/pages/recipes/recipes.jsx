@@ -79,7 +79,7 @@ export default function Recipes() {
     }
 
     function searchRecipes(input) {
-        return input.filter((recipe) => recipe.name.toLowerCase().includes(search))
+        return input.filter((recipe) => recipe.name.toLowerCase().includes(search.toLowerCase()))
     }
 
     function cookableRecipes(input) {

@@ -36,6 +36,7 @@ export default function AddRecipe() {
 
         const newRecipe = {...formData};
 
+
         try {
             const response = await fetch("http://localhost:5000/api/recipes", {
                 method: "POST",
@@ -45,13 +46,12 @@ export default function AddRecipe() {
                 body: JSON.stringify(newRecipe),
             });
 
-            console.log(response)
             if(!response.ok){
                 throw Error("new Recipe: " + response.status + " " + response.statusText);
             }
 
-            window.alert("successfully created"); //ToDo wenn Zeit dann ModalDialog
-            navigate("/recipes")
+            //window.alert("successfully created"); //ToDo wenn Zeit dann ModalDialog
+            navigate("/recipes") //ToDo wenn Zeit Redirect zu neuem Rezept
 
         } catch (e) {
             window.alert("Error: "+e.message);
