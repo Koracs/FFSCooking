@@ -28,10 +28,12 @@ body {
 .container {
     margin: 1rem;
     text-align: center;
+    padding-bottom: 2.5rem;
 }
 
 .footer {
     background-color: var(--background-color2);
+    height: 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: stretch;
