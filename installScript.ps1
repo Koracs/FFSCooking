@@ -9,14 +9,18 @@ $backendPath = $currentPath+"\backend\"
 $frontendPath = $currentPath+"\frontend\"
 
 if(Test-Path -Path $backendPath) {
-    & npm  install $backendPath --prefix $backendPath --silent
+    Write-Host "start backend installation"
+	& cd $backendPath
+    & npm install $backendPath --prefix $backendPath
     Write-Host "backend finished"
 } else {
     Write-Host "backend path for node modules already exists, please check manually your installation"
 }
 
 if(Test-Path -Path $frontendPath) {
-    & npm  install $frontendPath --prefix $frontendPath --silent
+    Write-Host "start frontend installation"
+	& cd $frontendPath
+    & npm install $frontendPath --prefix $frontendPath
     Write-Host "frontend finished"
 } else {
     Write-Host "frontend path for node modules already exists, please check manually your installation"
