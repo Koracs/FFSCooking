@@ -14,7 +14,7 @@ if(Test-Path -Path ($backendPath+"\node_modules\")) {
     Write-Host "node modules for backend not available, please verify your installation"
 }
 if(Test-Path -Path ($frontendPath+"\node_modules\")) {
-    invoke-expression "cmd /c start powershell -Command { & 'npm' start--prefix $frontendPath  --silent}"
+    invoke-expression "cmd /c start powershell -Command { & 'npm' start --prefix $frontendPath  --silent}"
 } else {
     Write-Host "node modules for frontend not available, please verify your installation"
 }
