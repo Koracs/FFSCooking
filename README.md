@@ -1,3 +1,11 @@
+# FFSCooking
+This repository was created as part of a Communications Engineering project at Johannes Kepler University Linz in the summer semester of 2022.
+
+*Created by: Felix Stadler, Sebastian Wallner, Stefan Grafinger*
+
+## Functionality
+This Project consists of a node.js backend with a mongoDB connection and a react frontend in order to **create and manage your cooking recipes**. In addition, an **inventory system** was created that can be used together with the recipes to show your **cookable recipes**.
+
 ## How to get started
 choose your desired path:
 - use powershell scripts
@@ -13,7 +21,7 @@ for using powershell scripts:
 
 In the project directory, you can run:
 
-!!!!!!!!!!!!for backend!!!!!!!!!!!!
+### Backend
 
 ### `npm install `
 1) open powershell
@@ -26,7 +34,7 @@ In the project directory, you can run:
 2) navigate into backend folder
 3) run npm start
 
-!!!!!!!!!!!!for frontend:!!!!!!!!!!!!
+### Frontend
 
 ### `npm install `
 1) open powershell
